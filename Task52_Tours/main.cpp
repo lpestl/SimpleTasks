@@ -4,7 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <iterator>
-#include <Windows.h>
+//#include <Windows.h>
 
 using namespace std;
 
@@ -76,24 +76,14 @@ int main() {
 			Dk[0]--;
 
 			endOfDay(Dk, Ck);
-
-			for (auto &data : Dk) {
-				cout << data << " ";
-			}
-			cout << endl;
-			for (auto &data : Ck) {
-				cout << data << " ";
-			}
-			cout << endl;
-			cout << endl;
 		}
 
-		cout << total << endl;
+		output << total;
 	}
 	else {
 		output << "[ERROR] Input file was not found\n";
 	}
 
-	system("pause");
+	//system("pause");
 	return 0;
 }
