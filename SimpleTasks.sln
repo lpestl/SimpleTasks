@@ -14,11 +14,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task51_AnswerFromTheAuthor"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Task52_Tours", "Task52_Tours\Task52_Tours.vcxproj", "{035DF0C8-26B7-48FE-875B-A4E62C136BEC}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Task51_Yuliok_07", "Task51_AliceBob\AnswerFrom@Yuliok_07\Task51_Yuliok_07\Task51_Yuliok_07.pyproj", "{4EBD34D1-C988-475F-9A38-4E4847647BAE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task51", "Task51", "{427A5AE3-0263-4806-B403-158BCEE41552}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task52", "Task52", "{E64A41A6-967D-43C5-AB93-BA55FE2953C7}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Task51_Yuliok_07", "Task51_AliceBob\AnswerFrom@Yuliok_07\Task51_Yuliok_07.pyproj", "{4EBD34D1-C988-475F-9A38-4E4847647BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
