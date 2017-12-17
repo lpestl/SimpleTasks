@@ -12,7 +12,7 @@ vector<int> getDataFromString(string str);
 vector<int> getCurrentWorth(const vector<int> &D, const vector<int> &C);
 void sortByWorth(vector<int> &D, vector<int> &C, vector<int> &W);
 void endOfDay(vector<int> &D, vector<int> &C);
-void printArrays(const vector<int> &D, const vector<int> &C, const vector<int> &W, int &result);
+//void printArrays(const vector<int> &D, const vector<int> &C, const vector<int> &W, int &result);
 
 int main() {
 	ifstream input("input.txt");
