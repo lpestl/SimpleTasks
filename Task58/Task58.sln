@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FDD9AFA5-24CE-476D-AC2D-072E4113C25B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Task58_lPestl", "lPestl\Task58_lPestl.fsproj", "{03A07E10-536B-4F29-8158-8094D5EF0117}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {413E6566-5834-4DFD-A698-1DAFEB4B4ACA}
+	EndGlobalSection
+EndGlobal
