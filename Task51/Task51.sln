@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Task51_lPestl", "lPestl\Task51_lPestl.vcxproj", "{FDA5D1E8-1403-416A-8C9A-000BC3421616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task51_albert_davletov", "albert_davletov\Task51_albert_davletov.csproj", "{6C6DB3F9-4881-4768-94D9-D2F081781CCF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Task51_Yuliok_07", "Yuliok_07\Task51_Yuliok_07.pyproj", "{D60ACFDF-A617-40FE-9863-D38462419933}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Debug|x64.ActiveCfg = Debug|x64
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Debug|x64.Build.0 = Debug|x64
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Debug|x86.ActiveCfg = Debug|Win32
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Debug|x86.Build.0 = Debug|Win32
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Release|Any CPU.ActiveCfg = Release|Win32
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Release|x64.ActiveCfg = Release|x64
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Release|x64.Build.0 = Release|x64
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Release|x86.ActiveCfg = Release|Win32
+		{FDA5D1E8-1403-416A-8C9A-000BC3421616}.Release|x86.Build.0 = Release|Win32
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Debug|x64.Build.0 = Debug|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Debug|x86.Build.0 = Debug|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Release|x64.ActiveCfg = Release|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Release|x64.Build.0 = Release|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C6DB3F9-4881-4768-94D9-D2F081781CCF}.Release|x86.Build.0 = Release|Any CPU
+		{D60ACFDF-A617-40FE-9863-D38462419933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60ACFDF-A617-40FE-9863-D38462419933}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D60ACFDF-A617-40FE-9863-D38462419933}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D60ACFDF-A617-40FE-9863-D38462419933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60ACFDF-A617-40FE-9863-D38462419933}.Release|x64.ActiveCfg = Release|Any CPU
+		{D60ACFDF-A617-40FE-9863-D38462419933}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB724CD7-D5DA-475F-82F2-ACDBE95EE2CC}
+	EndGlobalSection
+EndGlobal

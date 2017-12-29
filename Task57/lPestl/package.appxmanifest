@@ -6,14 +6,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="d9d38ce7-7de5-46f4-836e-a2517208c743"
+    Name="432a9d1e-0a4d-4607-8ded-8086291a1b62"
     Version="1.0.0.0"
     Publisher="CN=lPestl" />
 
-  <mp:PhoneIdentity PhoneProductId="d9d38ce7-7de5-46f4-836e-a2517208c743" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <mp:PhoneIdentity PhoneProductId="432a9d1e-0a4d-4607-8ded-8086291a1b62" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
   <Properties>
-    <DisplayName>Task57_Parking</DisplayName>
+    <DisplayName>Task57_lPestl</DisplayName>
     <PublisherDisplayName>lPestl</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
@@ -29,15 +29,11 @@
   <Applications>
     <Application 
       Id="App"
-      StartPage="ms-appx-web:///index.html">
-
-      <uap:ApplicationContentUriRules>
-        <uap:Rule Type="include" WindowsRuntimeAccess="all" Match="ms-appx-web:///index.html" />
-      </uap:ApplicationContentUriRules>
+      StartPage="index.html">
 
       <uap:VisualElements
-        DisplayName="Task57_Parking"
-        Description="Task57_Parking"
+        DisplayName="Task57_lPestl"
+        Description="Task57_lPestl"
         BackgroundColor="transparent"
         Square150x150Logo="images\Square150x150Logo.png"
         Square44x44Logo="images\Square44x44Logo.png">

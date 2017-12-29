@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>4ebd34d1-c988-475f-9a38-4e4847647bae</ProjectGuid>
+    <ProjectGuid>d60acfdf-a617-40fe-9863-d38462419933</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>delivery_time.py</StartupFile>
     <SearchPath>

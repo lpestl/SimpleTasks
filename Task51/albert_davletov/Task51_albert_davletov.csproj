@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3F218A39-EF19-40E5-AD40-F2788765E936}</ProjectGuid>
+    <ProjectGuid>{6C6DB3F9-4881-4768-94D9-D2F081781CCF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task51_AnswerFromTheAuthor</RootNamespace>
-    <AssemblyName>Task51_AnswerFromTheAuthor</AssemblyName>
+    <RootNamespace>Task51_albert_davletov</RootNamespace>
+    <AssemblyName>Task51_albert_davletov</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
