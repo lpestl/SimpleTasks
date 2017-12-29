@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task51_albert_davletov", "a
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Task51_Yuliok_07", "Yuliok_07\Task51_Yuliok_07.pyproj", "{D60ACFDF-A617-40FE-9863-D38462419933}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC708167-5783-4812-A440-5F68BCE1A1CB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
