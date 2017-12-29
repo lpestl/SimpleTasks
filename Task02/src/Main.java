@@ -38,21 +38,12 @@ public class Main
 	public static void main(String[] args)
 	{
 		int[] array01 = {3,4,5,6,7,8,9,0,1,2};
-		int[] array02 = {8,9,0,1,2,3,4,5,6,7};
-		int[] array03 = {0,1,2,3,4,5,6,7,8,9};
-		int[] array04 = {1,2,3,4,5,6,7,8,9,0};
-		int[] array05 = {6,7,8,9,1,2,3,4,5};
-		int[] array06 = {8,9,1,2,3,4,5,6,7};
-		int[] array07 = {3,4,5,6,7,8,9,1,2};
-		int[] array08 = {1,2,3,4,5,6,7,8,9};
-		int[] array09 = {2,3,4,5,6,7,8,9,1};
-		int[] array10 = {1,2};
-		int[] array11 = {2,1};
-		int[] array12 = {1};
-		int[] array13 = {2,3,3,1,1,2};
-		int[] array14 = {2,2,3,3,3,1,1,1};
-		int[] array15 = {1,2,3,1};
-		int[] array16 = {};
+		int[] array02 = {2,3,4,5,6,7,8,9,1};
+		int[] array03 = {1,2};
+		int[] array04 = {2,1};
+		int[] array05 = {1};
+		int[] array06 = {1,2,3,1};
+		int[] array07 = {};
 		
 		int index = minFromSortArray(array01);
 		printArray(array01);
@@ -88,61 +79,8 @@ public class Main
 	        
 	    index = minFromSortArray(array07);
 	    printArray(array07);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array07[index]);
-	        
-	    index = minFromSortArray(array08);
-	    printArray(array08);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array08[index]);
-	        
-	    index = minFromSortArray(array09);
-	    printArray(array09);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array09[index]);
-	        
-	    index = minFromSortArray(array10);
-	    printArray(array10);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array10[index]);
-	        
-	    index = minFromSortArray(array11);
-	    printArray(array11);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array11[index]);
-	        
-	    index = minFromSortArray(array12);
-	    printArray(array12);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array12[index]);
-	        
-	    index = minFromSortArray(array13);
-	    printArray(array13);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array13[index]);
-	        
-	    index = minFromSortArray(array14);
-	    printArray(array14);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array14[index]);
-	        
-	    index = minFromSortArray(array15);
-	    printArray(array15);
-	    System.out.printf("Min index is %d and min = %d\n", 
-	        index, 
-	        array15[index]);
-	        
-	    index = minFromSortArray(array16);
-	    printArray(array16);
-	    System.out.printf ("Min index is %d and min = \n", 
+	    System.out.printf("Min index is %d and min = NaN\n", 
 	        index);
+	        //array07[index]);	        
 	}
 }
