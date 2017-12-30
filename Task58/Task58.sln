@@ -8,18 +8,42 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Task58_lPestl", "lPestl\Task58_lPestl.fsproj", "{03A07E10-536B-4F29-8158-8094D5EF0117}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Task58_lPestl", "lPestl\Task58_lPestl.fsproj", "{03A07E10-536B-4F29-8158-8094D5EF0117}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Task58_lPestlCpp", "lPestlCpp\Task58_lPestlCpp.vcxproj", "{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|x64.Build.0 = Debug|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Debug|x86.Build.0 = Debug|Any CPU
 		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|x64.ActiveCfg = Release|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|x64.Build.0 = Release|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|x86.ActiveCfg = Release|Any CPU
+		{03A07E10-536B-4F29-8158-8094D5EF0117}.Release|x86.Build.0 = Release|Any CPU
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Debug|x64.ActiveCfg = Debug|x64
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Debug|x64.Build.0 = Debug|x64
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Debug|x86.ActiveCfg = Debug|Win32
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Debug|x86.Build.0 = Debug|Win32
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Release|Any CPU.ActiveCfg = Release|Win32
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Release|x64.ActiveCfg = Release|x64
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Release|x64.Build.0 = Release|x64
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Release|x86.ActiveCfg = Release|Win32
+		{CB1CB294-D20F-4FEB-A26C-E5C091A73AF3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
