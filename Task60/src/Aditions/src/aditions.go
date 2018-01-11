@@ -142,7 +142,7 @@ func main() {
 	// Сумма nil слагаемых
 	fmt.Printf("----\n  ")
 	fmt.Printf("nil + nil")
-	fmt.Printf("= ")
+	fmt.Printf(" = ")
 	//printList(addition(nil, nil))
 	fmt.Printf("nil")
 }
