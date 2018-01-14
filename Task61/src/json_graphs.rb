@@ -13,54 +13,51 @@ class Crossroad
      :out_roads
 end
 
-# Находим и добавляем соседние перекрестки из элемента Arr в json данных, для текущего перекрестка cross
-def find_in_out_roads(cross, data_hash, row, from, to)
-  if data_hash["Arr"][row][from]["x"] == cross.location.x &&
-      data_hash["Arr"][row][from]["y"] == cross.location.y
-        end_road = Struct::Point.new(data_hash["Arr"][row][to]["x"], data_hash["Arr"][row][to]["y"])
-        cross.in_roads.push(end_road)
-        cross.out_roads.push(end_road)
-  end
-end
-
-# Функция находит и добавляет ВСЕ соседние перекрестки из json данных для текущего перекрестка cross (инициализация перекрестка)
-def get_in_out_roads(cross, data_hash)
-  i=0
-  cross.in_roads = Array.new
-  cross.out_roads = Array.new
-  while i < data_hash["Arr"].count
-    find_in_out_roads(cross, data_hash, i, "start", "end")
-    find_in_out_roads(cross, data_hash, i, "end", "start")
-    i+=1
-  end
-end
-
-# Функция заполняет массив crossroads всеми перекрестками без повторений
-def find_crossroad_in_data_hash(data_hash, row, where, crossroads)
-  location = Struct::Point.new(data_hash["Arr"][row][where]["x"], data_hash["Arr"][row][where]["y"])
-  cross = crossroads.find{ |x| x.location == location}
-  if cross == nil 
-    new_cross = Crossroad.new
-    new_cross.location = location
-    get_in_out_roads(new_cross, data_hash)
-    crossroads.push(new_cross)
-  end
-end
-
-# Считаем и получаем длинну дороги от точки point1 до точки point2
-def get_distance(point1, point2)
-  Math.sqrt((point2.x - point1.x)**2 + (point2.y - point1.y)**2)
-end
-
 # Основная функция обхода графа. Считает и возвращает минимальное время, необходимое для обработки всех дорог
 def get_min_time(input_json, speed)
   # Создаем хэш карту из json строки
   data_hash = JSON.parse(input_json)
+  
+  # Функция находит и добавляет ВСЕ соседние перекрестки из json данных для текущего перекрестка cross (инициализация перекрестка)
+  def get_in_out_roads(cross, data_hash)
+    # Находим и добавляем соседние перекрестки из элемента Arr в json данных, для текущего перекрестка cross
+    def find_in_out_roads(cross, data_hash, row, from, to)
+      if data_hash["Arr"][row][from]["x"] == cross.location.x &&
+          data_hash["Arr"][row][from]["y"] == cross.location.y
+            end_road = Struct::Point.new(data_hash["Arr"][row][to]["x"], data_hash["Arr"][row][to]["y"])
+            cross.in_roads.push(end_road)
+            cross.out_roads.push(end_road)
+      end
+    end
+    
+    i=0
+    cross.in_roads = Array.new
+    cross.out_roads = Array.new
+    while i < data_hash["Arr"].count
+      find_in_out_roads(cross, data_hash, i, "start", "end")
+      find_in_out_roads(cross, data_hash, i, "end", "start")
+      i+=1
+    end
+  end
+  
   # Создаем из заполняем массив, хранящий в себе все перекрестки
   crossroads = Array.new
   crossroads.push(Crossroad.new)
   crossroads[0].location = Struct::Point.new(data_hash["x"], data_hash["y"])
   get_in_out_roads(crossroads[0], data_hash)
+  
+  # Функция заполняет массив crossroads всеми перекрестками без повторений
+  def find_crossroad_in_data_hash(data_hash, row, where, crossroads)
+    location = Struct::Point.new(data_hash["Arr"][row][where]["x"], data_hash["Arr"][row][where]["y"])
+    cross = crossroads.find{ |x| x.location == location}
+    if cross == nil 
+      new_cross = Crossroad.new
+      new_cross.location = location
+      get_in_out_roads(new_cross, data_hash)
+      crossroads.push(new_cross)
+    end
+  end
+  
   i = 0
   while i < data_hash["Arr"].count
     find_crossroad_in_data_hash(data_hash, i, "start", crossroads)
@@ -71,6 +68,12 @@ def get_min_time(input_json, speed)
   # Создаем массив по аналогии со стеком, который будет хранить в себе пройденные перекрестки
   way = Array.new
   way.push(crossroads[0])
+  
+  # Считаем и получаем длинну дороги от точки point1 до точки point2
+  def get_distance(point1, point2)
+    Math.sqrt((point2.x - point1.x)**2 + (point2.y - point1.y)**2)
+  end
+  
   # Счетчик для пройденной дистанции
   distance = 0
   # Индекс для стека пройденного пути
