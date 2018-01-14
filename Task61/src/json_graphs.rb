@@ -1,4 +1,5 @@
 require 'json'
+
 # структура координат
 Struct.new("Point", :x, :y)
 
@@ -34,24 +35,11 @@ def get_in_out_roads(cross, data_hash)
   end
 end
 
-# Функция проверяет, существует ли перекресток в массиве перекрестков с координатами point
-def does_its_cross_exist(point, crossroads)
-  res = false
-  i = 0
-  while i < crossroads.count
-    if crossroads[i].location == point
-      res = true
-      break
-    end
-    i += 1
-  end
-  res
-end
-
 # Функция заполняет массив crossroads всеми перекрестками без повторений
 def find_crossroad_in_data_hash(data_hash, row, where, crossroads)
   location = Struct::Point.new(data_hash["Arr"][row][where]["x"], data_hash["Arr"][row][where]["y"])
-  if does_its_cross_exist(location, crossroads) == false 
+  cross = crossroads.find{ |x| x.location == location}
+  if cross == nil 
     new_cross = Crossroad.new
     new_cross.location = location
     get_in_out_roads(new_cross, data_hash)
@@ -129,6 +117,11 @@ end
 # скорость при обратке дороги
 speed = 20    # км / ч
 # данные о координатах гаража и всех дорогах
+# TEST 1:
+#            _
+#           |/
+#          /|
+#
 json_string = '{"x" : 0, "y" : 0,  
     "Arr" : [   
       { "start": { "x" : 0, "y" : 0 }, "end": { "x" : 10000, "y" : 10000 }},  
@@ -136,4 +129,45 @@ json_string = '{"x" : 0, "y" : 0,
       { "start": { "x" : 5000, "y" : 10000 }, "end": { "x" : 10000, "y" : 10000 }}]}'
 
 # Вызов функции подсчета минимального времени и вывод на экран
+puts get_min_time(json_string, speed)
+
+# TEST 2:
+#            _
+#           /|\
+#          --+--
+#           \|/
+#
+json_string = '{"x" : 0, "y" : 0,  
+    "Arr" : [   
+      { "start": { "x" : 0, "y" : 0 }, "end": { "x" : 5000, "y" : 5000 }},  
+      { "start": { "x" : 5000, "y" : 5000 }, "end": { "x" : 10000, "y": 0 }}, 
+      { "start": { "x" : 0, "y" : 0 }, "end": { "x" : 5000, "y": -5000 }},   
+      { "start": { "x" : 5000, "y" : -5000 }, "end": { "x" : 10000, "y": 0 }}, 
+      { "start": { "x" : 0, "y" : 0 }, "end": { "x" : 10000, "y": 0 }},  
+      { "start": { "x" : 5000, "y" : 5000 }, "end": { "x" : 5000, "y" : -5000 }}]}'
+
+puts get_min_time(json_string, speed)
+
+# TEST 3:
+#           | |
+#          -+-+-
+#           | |
+#          -+-+-
+#           | |
+#
+json_string = '{"x" : 0, "y" : 0,  
+    "Arr" : [   
+      { "start": { "x" : 0, "y" : 0 }, "end": { "x" : 5000, "y" : 0 }},  
+      { "start": { "x" : 5000, "y" : 0 }, "end": { "x" : 10000, "y": 0 }}, 
+      { "start": { "x" : 10000, "y" : 0 }, "end": { "x" : 15000, "y": 0 }},   
+      { "start": { "x" : 0, "y" : -5000 }, "end": { "x" : 5000, "y": -5000 }}, 
+      { "start": { "x" : 5000, "y" : -5000 }, "end": { "x" : 10000, "y": -5000 }},  
+      { "start": { "x" : 10000, "y" : -5000 }, "end": { "x" : 15000, "y": -5000 }}, 
+      { "start": { "x" : 5000, "y" : 5000 }, "end": { "x" : 5000, "y" : 0 }},  
+      { "start": { "x" : 5000, "y" : 0 }, "end": { "x" : 5000, "y": -5000 }}, 
+      { "start": { "x" : 5000, "y" : -5000 }, "end": { "x" : 5000, "y": -10000 }},   
+      { "start": { "x" : 10000, "y" : 5000 }, "end": { "x" : 10000, "y": 0 }}, 
+      { "start": { "x" : 10000, "y" : 0 }, "end": { "x" : 10000, "y": -5000 }}, 
+      { "start": { "x" : 10000, "y" : -5000 }, "end": { "x" : 10000, "y" : -10000 }}]}'
+
 puts get_min_time(json_string, speed)
