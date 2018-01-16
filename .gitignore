@@ -287,9 +287,11 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /.metadata/
+/.settings/
 *.buildpath
 *.project
 RemoteSystemsTempFiles
 /Task60/src/github.com/nsf
 /Task60/src/github.com/rogpeppe
 /Task60/src/golang.org/x
+.settings
