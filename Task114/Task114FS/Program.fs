@@ -5,9 +5,11 @@ let rec NumberOfIntPoints radius =
     // в цикле считаем количество целочисленных точек внутри одной четверти круга, 
     for x in 1..radius do
         // (!!!) не лежащих на его осях (поэтому считаем не с нуля, а с единицы)
-        let mutable y = 1
+        let mutable y = x
         while ((y <= radius) && ((x * x + y * y) <= radius * radius)) do
-            res <- res + 1
+            if x = y then
+                res <- res + 1
+            else res <- res + 2
             y <- y + 1
     // Результат умножаем на количество четвертей у круга, 
     // добавляем количество точек лежащих на осях в четыре стороны от центра,
