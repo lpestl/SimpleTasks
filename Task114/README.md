@@ -11,3 +11,7 @@ r - радиус круга, где r - целое число от 1 до 10^4.
 ## Пример: 
 r = 1
 Answer = 5
+
+## Answer
+
+[http://telegra.ph/UniLecs-114-Tetrad-v-kletochku-08-02](http://telegra.ph/UniLecs-114-Tetrad-v-kletochku-08-02)
