@@ -12,15 +12,15 @@ namespace Task115cs
         static void Main(string[] args)
         {
             var k = 3; var fans = new[] {7, 12, 5};
-            var answer = ColculateHotelsRooms(k, fans);
+            var answer = CalculateHotelsRooms(k, fans);
             Console.WriteLine($"{answer}");
 
             k = 5; fans = new[] {12, 15, 21};
-            answer = ColculateHotelsRooms(k, fans);
+            answer = CalculateHotelsRooms(k, fans);
             Console.WriteLine($"{answer}");
         }
 
-        private static int ColculateHotelsRooms(int k, int[] fans)
+        private static int CalculateHotelsRooms(int k, int[] fans)
         {
             var res = 0;
             foreach (var fan in fans)
