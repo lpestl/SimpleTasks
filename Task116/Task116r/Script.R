@@ -28,8 +28,6 @@ optimalWay <- function(oilCosts, trainRoads) {
             }
         }
     }
-    # Ну и раз есть такая возможность, то нарисуем наш граф
-
     # Вычесляем путь
     answer <- vector(mode = "list");
     current <- length(oilCosts);
