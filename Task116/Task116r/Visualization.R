@@ -1,5 +1,5 @@
-nodes <- read.csv("Test3Nodes.csv", header = T, as.is = T);
-links <- read.csv("Test3Edges.csv", header = T, as.is = T);
+nodes <- read.csv("Test4Nodes.csv", header = T, as.is = T);
+links <- read.csv("Test4Edges.csv", header = T, as.is = T);
 
 head(nodes)
 head(links)

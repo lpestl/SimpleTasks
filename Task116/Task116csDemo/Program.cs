@@ -138,6 +138,17 @@ namespace Task116csDemo
                 if (i != a.Count - 1) Console.Write("->");
             }
             Console.WriteLine();
+
+            var oilCoasts5 = new int[] {1, 200, 3, 4, 5, 6};
+            var trainRoads5 = new int[,] {{1, 2}, {2, 6}, {3, 1}, {3, 4}, {4, 5}, {5, 6}, {2, 5}};
+            var answer5 = GetOptimalWay(oilCoasts5, trainRoads5);
+            a = answer5.ToList();
+            for (var i = 0; i < a.Count; i++)
+            {
+                Console.Write($"{a[i]}");
+                if (i != a.Count - 1) Console.Write("->");
+            }
+            Console.WriteLine();
         }
     }
 }

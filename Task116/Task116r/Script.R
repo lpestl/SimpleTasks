@@ -53,4 +53,9 @@ oilCosts <- c(5, 5, 5, 5, 5, 5, 5, 5, 5, 5);
 trainRoads <- c(c(1, 3), c(1, 2), c(2, 4), c(3, 5), c(4, 6), c(5, 7), c(6, 8), c(7, 9), c(8, 10), c(9, 10));
 answer3 <- optimalWay(oilCosts, trainRoads)
 
+oil_costs <- c(1, 200, 3, 4, 5, 6);
+train_roads <- c(c(1, 2), c(2, 6), c(3, 1), c(3, 4), c(4, 5), c(5, 6), c(2, 5))
+answer4 <- optimalWay(oil_costs, train_roads);
+answer4
+
 # end
