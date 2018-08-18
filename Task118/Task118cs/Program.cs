@@ -6,29 +6,34 @@ using System.Threading.Tasks;
 
 namespace Task118cs
 {
-    public static class Tree
+    public class Tree
     {
-        private static List<int> GetBoundedVerhies(int index, int[,] edges)
+        private struct Node
         {
-            var bounded = new List<int>();
-            for (var i = 0; i < edges.GetLength(0); i++)
-            {
-                if (edges[i,0] == index)
-                    bounded.Add(edges[i,1]);
-                if (edges[i,1] == index)
-                    bounded.Add(edges[i,0]);
-            }
-
-            return bounded;
+            public int Index { get; set; }
+            public int Value { get; set; }
+            public List<Node> BoundedNodes { get; set; }
         }
 
+        private readonly List<Node> _verhies = new List<Node>();
+        private static Tree _instance;
+
+        private Tree(int[] values, int[,] edges)
+        {
+            for(var i = 0; i < values.Length; i++)
+                _verhies.Add(new Node { Index = i, Value = values[i], BoundedNodes = new List<Node>()});
+
+            for (var i = 0; i < values.Length; i++)
+                for (var j = 0; j < edges.GetLength(0); j++)
+                    if (edges[j,0] == i+1) 
+                        _verhies[i].BoundedNodes.Add(_verhies[edges[j,1] - 1]);
+                    else if (edges[j,1] == i+1)
+                        _verhies[i].BoundedNodes.Add(_verhies[edges[j,0] - 1]);
+        }
+        
         public static int CalculateMaxSumUnboundVerhies(int[] values, int[,] edges)
         {
-            var tree = new List<List<int>>();
-            for (var i = 0; i < values.Length; i++)
-            {
-                tree.Add(GetBoundedVerhies(i+1, edges));
-            }
+            _instance = new Tree(values, edges);
             return 0;
         }
     }
@@ -37,10 +42,15 @@ namespace Task118cs
     {
         static void Main(string[] args)
         {
-            int[] values = {1, 1, 0, 1};
-            int[,] edges = { { 1, 2}, { 1, 3}, { 2, 4} };
-            var answer = Tree.CalculateMaxSumUnboundVerhies(values, edges);
-            Console.WriteLine(answer);
+            int[] values1 = {1, 1, 0, 1};
+            int[,] edges1 = { { 1, 2}, { 1, 3}, { 2, 4} };
+            var answer1 = Tree.CalculateMaxSumUnboundVerhies(values1, edges1);
+            Console.WriteLine(answer1);
+            
+            int[] values2 = { 1, 0, 1000, 0, 1000, 1, 1 };
+            int[,] edges2 = { { 1, 2 }, { 1, 3 }, { 2, 4 }, { 2, 5 }, { 3, 6 }, { 3, 7 } };
+            var answer2 = Tree.CalculateMaxSumUnboundVerhies(values2, edges2);
+            Console.WriteLine(answer2);
         }
     }
 }

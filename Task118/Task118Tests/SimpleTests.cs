@@ -20,5 +20,14 @@ namespace Task118Tests
             var answer = Tree.CalculateMaxSumUnboundVerhies(values, edges);
             answer.Should().Be(2);
         }
+
+        [Fact]
+        public void Test01_MaxDifLayers()
+        {
+            int[] values = {1, 0, 1000, 0, 1000, 1, 1};
+            int[,] edges = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 6}, {3, 7}};
+            var answer = Tree.CalculateMaxSumUnboundVerhies(values, edges);
+            answer.Should().Be(2000);
+        }
     }
 }
