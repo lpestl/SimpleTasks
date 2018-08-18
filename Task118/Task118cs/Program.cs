@@ -34,6 +34,26 @@ namespace Task118cs
         public static int CalculateMaxSumUnboundVerhies(int[] values, int[,] edges)
         {
             _instance = new Tree(values, edges);
+            var sum = 0;
+            for (var i = 0; i < _instance._verhies.Count; i++)
+            {
+                var sumI = 0;
+                var setI = new List<Node>();
+                for (var j = 0; j < _instance._verhies.Count; j++)
+                {
+                    if (setI.Contains(_instance._verhies[j]))
+                        continue;
+                    var bounded = false;
+                    var children = new List<Node>();
+                    foreach (var node in setI)
+                        if (_instance._verhies[j].BoundedNodes.Contains(node))
+                        {
+                            bounded = true;
+                            break;
+                        }
+
+                }
+            }
             return 0;
         }
     }
