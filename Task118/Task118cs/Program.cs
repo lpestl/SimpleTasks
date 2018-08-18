@@ -8,8 +8,27 @@ namespace Task118cs
 {
     public static class Tree
     {
+        private static List<int> GetBoundedVerhies(int index, int[,] edges)
+        {
+            var bounded = new List<int>();
+            for (var i = 0; i < edges.GetLength(0); i++)
+            {
+                if (edges[i,0] == index)
+                    bounded.Add(edges[i,1]);
+                if (edges[i,1] == index)
+                    bounded.Add(edges[i,0]);
+            }
+
+            return bounded;
+        }
+
         public static int CalculateMaxSumUnboundVerhies(int[] values, int[,] edges)
         {
+            var tree = new List<List<int>>();
+            for (var i = 0; i < values.Length; i++)
+            {
+                tree.Add(GetBoundedVerhies(i+1, edges));
+            }
             return 0;
         }
     }
