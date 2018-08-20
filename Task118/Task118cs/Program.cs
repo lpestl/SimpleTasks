@@ -34,17 +34,19 @@ namespace Task118cs
                         _verhies[i].BoundedNodes.Add(_verhies[edges[j,0] - 1]);
         }
         
-        public static int CalculateMaxSumUnboundVerhies(int[] values, int[,] edges)
+        public static int? CalculateMaxSumUnboundVerhies(int[] values, int[,] edges)
         {
             // Собираем дерево
             _instance = new Tree(values, edges);
-            // Считаем сумму изначально равной 0, хотя я с этим не согласен!!! подрорбнее в чате UniLecs
-            var sum = 0;
+            // Сумма пустого множества будет равна null: подрорбнее в чате UniLecs
+            int? sum = null;
             // Пройдем по всем нодам
             foreach (var firrstNode in _instance._verhies)
             {
                 // Создаем множество и добавляем в него текущий ноду
                 var setI = new List<Node> {firrstNode};
+                if (!sum.HasValue)
+                    sum = firrstNode.Value;
                 // Теперь найдем и добавим все несвязанные ноды с элементами из множдества setI
                 foreach (var potentialNode in _instance._verhies)
                 {
@@ -73,13 +75,18 @@ namespace Task118cs
                             children.Remove(boundedChild);
                     }
 
-                    // Если значение текущего нода больше суммы значений его не связанных детей
-                    if (potentialNode.Value > children.Sum(x => x.Value))
-                        // то добавляем сам нод во множество
-                        setI.Add(potentialNode);
-                    else
-                        // Иначе, добавляем его не связанных детей
-                        setI.AddRange(children);
+                    var sumChildren = children.Sum(x => x.Value);
+                    // Важное дополнение: если рассматриваемый нод или его дети не увеличивают сумм, то не добавляем во множество ничего
+                    if ((sum + potentialNode.Value > sum) || (sum + sumChildren > sum))
+                    {
+                        // Если значение текущего нода больше суммы значений его не связанных детей
+                        if (potentialNode.Value >= sumChildren)
+                            // то добавляем сам нод во множество
+                            setI.Add(potentialNode);
+                        else
+                            // Иначе, добавляем его не связанных детей
+                            setI.AddRange(children);
+                    }
                 }
                 // Если сумма в текущем множестве больше ранее посчитанной суммы
                 if (sum < setI.Sum(x => x.Value))
