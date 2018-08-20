@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task118cs
 {
     public class Tree
     {
-        private struct Node
+        private class Node
         {
             public int Index { get; set; }
             public int Value { get; set; }
@@ -35,26 +33,41 @@ namespace Task118cs
         {
             _instance = new Tree(values, edges);
             var sum = 0;
-            for (var i = 0; i < _instance._verhies.Count; i++)
+            foreach (var firrstNode in _instance._verhies)
             {
-                var sumI = 0;
-                var setI = new List<Node>();
-                for (var j = 0; j < _instance._verhies.Count; j++)
+                var setI = new List<Node> {firrstNode};
+                foreach (var potentialNode in _instance._verhies)
                 {
-                    if (setI.Contains(_instance._verhies[j]))
+                    if (setI.Find(x => x.Index == potentialNode.Index) != null)
                         continue;
                     var bounded = false;
-                    var children = new List<Node>();
                     foreach (var node in setI)
-                        if (_instance._verhies[j].BoundedNodes.Contains(node))
+                        if (potentialNode.BoundedNodes.Find(x => x.Index == node.Index) != null)
                         {
                             bounded = true;
                             break;
                         }
+                    if (bounded) continue;
 
+                    var children = new List<Node>();
+                    children.AddRange(potentialNode.BoundedNodes);
+                    foreach (var node in setI)
+                    {
+                        var boundedChild = children.Find(x => x.BoundedNodes.Find(y => y.Index == node.Index) != null);
+                        if (boundedChild != null)
+                            children.Remove(boundedChild);
+                    }
+
+                    if (potentialNode.Value > children.Sum(x => x.Value))
+                        setI.Add(potentialNode);
+                    else
+                        setI.AddRange(children);
                 }
+
+                if (sum < setI.Sum(x => x.Value))
+                    sum = setI.Sum(x => x.Value);
             }
-            return 0;
+            return sum;
         }
     }
 
