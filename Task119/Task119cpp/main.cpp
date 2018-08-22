@@ -47,15 +47,15 @@ vector<int> get_point_selles(vector<vector<int>> matrix)
 		}
 	}
 
-	for (auto i = 0; i < matrix.size(); ++i)
-	{
+	for (auto i = 0; i < mins.size(); ++i)
+	{	
 		cout << "Min for " << i << " row = " << mins[i].value << " and have columns indexes { ";
 		for (auto index : mins[i].indexes)
 			cout << index << "; ";
 		cout << "} " << endl;
 	}
 
-	for (auto j = 0; j < matrix[0].size(); ++j)
+	for (auto j = 0; j < maxs.size(); ++j)
 	{
 		cout << "Max for " << j << " column = " << maxs[j].value << " and have rows indexes { ";
 		for (auto index : maxs[j].indexes)
@@ -63,7 +63,10 @@ vector<int> get_point_selles(vector<vector<int>> matrix)
 		cout << "} " << endl;
 	}
 
-
+	for (auto i = 0; i < mins.size(); ++i)
+		for (auto j = 0; j < maxs.size(); ++j)
+			if (maxs[j].value == mins[i].value)
+				point_selles.emplace_back(matrix[i][j]);
 
 	return point_selles;
 }
