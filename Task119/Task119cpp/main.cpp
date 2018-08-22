@@ -26,12 +26,12 @@ vector<int> get_point_selles(vector<vector<int>> matrix)
 	mins.reserve(matrix.size());
 
 	// Перебираем все строки матрицы
-	for(auto i = 0; i < matrix.size(); ++i)
+	for(size_t i = 0; i < matrix.size(); ++i)
 	{
 		// Инициализируя при этом минимумы для каждой строки первым элементом
 		mins.emplace_back(matrix[i][0]);
 		// Перебераем все столбцы матрицы
-		for(auto j = 0; j < matrix[i].size(); ++j)
+		for(size_t j = 0; j < matrix[i].size(); ++j)
 		{
 			// Если текущий элемент матрицы больше максимума для текущего столбца
 			if (matrix[i][j] > maxs[j]) 
@@ -45,8 +45,8 @@ vector<int> get_point_selles(vector<vector<int>> matrix)
 	}
 
 	// Теперь выберем из максимумов и минимумов седловые элементы
-	for (auto i = 0; i < mins.size(); ++i)
-		for (auto j = 0; j < maxs.size(); ++j)
+	for (size_t i = 0; i < mins.size(); ++i)
+		for (size_t j = 0; j < maxs.size(); ++j)
 			// Если максимум для текщего столбца совпадает с минимумом текущей строки
 			if (maxs[j] == mins[i])
 				// то этот элемент является седловым элементом матрицы 
