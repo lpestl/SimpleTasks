@@ -3,69 +3,33 @@
 
 using namespace std;
 
-struct point
-{
-	int value;
-	vector<int> indexes;
-
-	point(int v): value(v) {}
-};
-
 vector<int> get_point_selles(vector<vector<int>> matrix)
 {
 	vector<int> point_selles;
-	vector<point> maxs;
+	vector<int> maxs;
 	maxs.reserve(matrix[0].size());
 	for (auto j : matrix[0])
-		maxs.emplace_back(point(j));
+		maxs.emplace_back(j);
 
-	vector<point> mins;
+	vector<int> mins;
 	mins.reserve(matrix.size());
 
 	for(auto i = 0; i < matrix.size(); ++i)
 	{
-		mins.emplace_back(point(matrix[i][0]));
+		mins.emplace_back(matrix[i][0]);
 		for(auto j = 0; j < matrix[i].size(); ++j)
 		{
-			if (matrix[i][j] == maxs[j].value)
-				maxs[j].indexes.emplace_back(i);
-			else 
-				if (matrix[i][j] > maxs[j].value) 
-				{
-					maxs[j] = point(matrix[i][j]);
-					maxs[j].indexes.emplace_back(i);
-				}
+			if (matrix[i][j] > maxs[j]) 
+				maxs[j] = matrix[i][j];
 
-			if (matrix[i][j] == mins[i].value)
-				mins[i].indexes.emplace_back(j);
-			else
-				if (matrix[i][j] < mins[i].value)
-				{
-					mins[i] = point(matrix[i][j]);
-					mins[i].indexes.emplace_back(j);
-				}
+			if (matrix[i][j] < mins[i])
+				mins[i] = matrix[i][j];
 		}
 	}
 
 	for (auto i = 0; i < mins.size(); ++i)
-	{	
-		cout << "Min for " << i << " row = " << mins[i].value << " and have columns indexes { ";
-		for (auto index : mins[i].indexes)
-			cout << index << "; ";
-		cout << "} " << endl;
-	}
-
-	for (auto j = 0; j < maxs.size(); ++j)
-	{
-		cout << "Max for " << j << " column = " << maxs[j].value << " and have rows indexes { ";
-		for (auto index : maxs[j].indexes)
-			cout << index << "; ";
-		cout << "} " << endl;
-	}
-
-	for (auto i = 0; i < mins.size(); ++i)
 		for (auto j = 0; j < maxs.size(); ++j)
-			if (maxs[j].value == mins[i].value)
+			if (maxs[j] == mins[i])
 				point_selles.emplace_back(matrix[i][j]);
 
 	return point_selles;
