@@ -61,6 +61,7 @@ front_line_data get_front_line(vector<vector<char>> area)
 			result.front_line += front_line;
 		}
 	}
+	result.front_line /= 2; // Линия фронта была посчитана дважды для каждой из сторон, поэтому делим на 2.
 	// Каждый периметр нужно увеличить на длину линии фронта
 	result.perimeter_r += result.front_line;
 	result.perimeter_f += result.front_line;
@@ -86,7 +87,7 @@ int main()
 									   {'R','R','F','F','R','R'},
 									   {'F','R','R','F','F','R'},
 									   {'F','F','F','F','R','R'} };
-	// Answer Should Be FrontLine = 14; PerimeterR = 27; PerimeterF = 20
+	// Answer Should Be FrontLine = 14; PerimeterR = 28; PerimeterF = 20
 	auto answer02 = get_front_line(area02);
 	cout << "FrontLine = " << answer02.front_line << "; PerimeterR = " << answer02.perimeter_r << "; PerimeterF = " << answer02.perimeter_f << ";" << endl;
 
@@ -96,7 +97,7 @@ int main()
 	const vector<vector<char>> area03{ {'R','R','R','R'},
 									   {'R','F','F','R'},
 									   {'R','R','R','R'} };
-	// Answer Should Be FrontLine = 6; PerimeterR = 14; PerimeterF = 6
+	// Answer Should Be FrontLine = 6; PerimeterR = 20; PerimeterF = 6
 	auto answer03 = get_front_line(area03);
 	cout << "FrontLine = " << answer03.front_line << "; PerimeterR = " << answer03.perimeter_r << "; PerimeterF = " << answer03.perimeter_f << ";" << endl;
 
