@@ -21,9 +21,50 @@ front_line_data get_front_line(vector<vector<char>> area)
 		return result;
 	if (area[0].empty())
 		return result;
-
-
-
+	// Пройдем по каждой строке матрицы
+	for (size_t i = 0; i < area.size(); ++i)
+	{
+		// И по каждому столбцу
+		for(size_t j = 0; j < area[i].size(); ++j)
+		{
+			// Объвим счетчики для подсчета периметра и линии фронта
+			unsigned int perimeter = 0;
+			unsigned int front_line = 0;
+			// Если текущий элемент матрицы в первой строку - то выше него - линия периметра
+			if (i == 0) perimeter++;
+			// Иначе если текущий элемент отличается от соседа сверху, то это линия фронта
+			else if (area[i][j] != area[i - 1][j]) front_line++;
+			// Если текущий элемент находится в последней строку - то ниже - линия периметра
+			if (i == area.size() - 1) perimeter++;
+			// Иначе если текущий элемент отличается от соседа снизу - то это линия фронта
+			else if (area[i][j] != area[i + 1][j]) front_line++;
+			// Аналочно и со столбцами. Если самый первый столбец - периметр, иначе если отличается от соседа слева - то линия фронта
+			if (j == 0) perimeter++;
+			else if (area[i][j] != area[i][j - 1]) front_line++;
+			// Если самый правый столбец - то периметр, Иначе если не равен соседу справа - линия фронта
+			if (j == area[i].size() - 1) perimeter++;
+			else if (area[i][j] != area[i][j + 1]) front_line++;
+			// Проверяем чей квадрат рассмотрели
+			switch (area[i][j])
+			{
+			// Если R, то добавляем им посчитанный периметр
+			case 'R':
+				result.perimeter_r += perimeter;
+				break;
+			// Если F, то добавим им периметр
+			case 'F':
+				result.perimeter_f += perimeter;
+				break;
+			default: ;
+			}
+			// А линия фронта общая для всех
+			result.front_line += front_line;
+		}
+	}
+	// Каждый периметр нужно увеличить на длину линии фронта
+	result.perimeter_r += result.front_line;
+	result.perimeter_f += result.front_line;
+	// И вернуть результат
 	return result;
 }
 
