@@ -1,6 +1,20 @@
-﻿type FrontLine = { FrontLine: uint32; PerimeterR: uint32; PerimeterF: uint32 }
-let GetFrontLine (area : _[,]) : FrontLine =
+﻿type FrontLine = 
+    { FrontLine: uint32 
+      PerimeterR: uint32 
+      PerimeterF: uint32 }
+
+type SecretServiceAgent (x: uint32, y: uint32) =
+    let currentX = x
+    let currentY = y
+
+let rec GetFrontLine (area : _[,]) : FrontLine =
     let result = { FrontLine = 0u; PerimeterR = 0u; PerimeterF = 0u; }
+
+    if (area.GetLength(0) <> 0) then
+        if (area.GetLength(1) <> 0) then
+            let a = 5
+            printf "%A" a
+
     result
 
 [<EntryPoint>]
