@@ -1,12 +1,35 @@
 ﻿type FrontLine = 
-    { FrontLine: uint32 
-      PerimeterR: uint32 
-      PerimeterF: uint32 }
+    { 
+        FrontLine: uint32 
+        PerimeterR: uint32 
+        PerimeterF: uint32 
+    }
 
-type SecretServiceAgent (x: uint32, y: uint32) =
-    let currentX = x
-    let currentY = y
+type NeighborStatus =
+    | NotExplored
+    | Perimeter
+    | ContactLine
+    | Our
 
+type Direction = | N | NE | E | SE | S | SW | W | NW
+
+type Position = 
+    struct
+        val x: uint32
+        val y: uint32
+        new (_x: uint32, _y: uint32) = { x = _x; y = _y }
+    end
+
+type IntelligenceKey =
+    struct
+        val position: Position
+        val direction: Direction
+        new (pos: Position, dir: Direction) = { position = pos; direction = dir }
+    end
+
+type MilitaryIntelligence (landingPoint: Position) =
+    let mutable currentPosition = landingPoint
+    
 let rec GetFrontLine (area : _[,]) : FrontLine =
     let result = { FrontLine = 0u; PerimeterR = 0u; PerimeterF = 0u; }
 
@@ -19,6 +42,14 @@ let rec GetFrontLine (area : _[,]) : FrontLine =
 
 [<EntryPoint>]
 let main argv = 
+    let key1 = new IntelligenceKey(new Position(1u, 2u), Direction.N)
+    let key2 = IntelligenceKey(Position(1u, 2u), Direction.N)
+
+    if (key1 = key2) then
+        printf "Victory!!!\n"
+    else 
+        printf "Fail ((\n"
+
     let area01 = array2D [ ['R';'R'];
                            ['R';'F'] ]
     // Answer Should Be FrontLine = 2; PerimeterR = 8; PerimeterF = 4
