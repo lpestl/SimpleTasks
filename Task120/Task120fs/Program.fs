@@ -39,6 +39,8 @@ type MilitaryIntelligence (landingPoint: Position,
     let mutable directionIntelligence = IntelligenceKey(landingPoint, Direction.N)
     let warArea = area
     let mutable status = OperationStatus.InProcess
+    let mutable perimeter = 0u
+    let mutable front = 0u
 
     member x.Position = directionIntelligence.position
 
@@ -51,6 +53,7 @@ type MilitaryIntelligence (landingPoint: Position,
             (dir = E && x.Position.x = uint32(warArea.GetLength(0)) - 1u) ||
             (dir = W && x.Position.x = 0u)) then
             whoIsNeighbor <- NeighborStatus.Perimeter
+            perimeter <- perimeter + 1u
         else 
             let mutable lookCell = x.Position
             match dir with
@@ -63,70 +66,51 @@ type MilitaryIntelligence (landingPoint: Position,
                 whoIsNeighbor <- NeighborStatus.Our
             else 
                 whoIsNeighbor <- NeighborStatus.ContactLine
+                front <- front + 1u
         map.Add(IntelligenceKey(x.Position, dir), whoIsNeighbor)
         whoIsNeighbor   
-
+            
     member x.NextStep : OperationStatus = 
-        let mutable dir = directionIntelligence.direction
-        let mutable lastDir = directionIntelligence.direction
-        while not (x.CheckNeighbor(dir) = Our) && not (map.ContainsKey(IntelligenceKey(x.Position, dir))) do
-            lastDir <- dir
-            match dir with
-            | N -> dir <- E
-            | E -> dir <- S
-            | S -> dir <- W
-            | W -> dir <- N
-        
-        if map.ContainsKey(IntelligenceKey(x.Position, dir)) then
+        if map.ContainsKey(directionIntelligence) then
             status <- OperationStatus.MissionComplete
         else 
-            if lastDir = dir then
-                match dir with
-                | N -> lastDir <- W
-                | E -> lastDir <- N
-                | S -> lastDir <- E
-                | W -> lastDir <- S
-            directionIntelligence.direction <- lastDir
-            match dir with
-            | N -> directionIntelligence.position.y <- directionIntelligence.position.y - 1u
-            | E -> directionIntelligence.position.x <- directionIntelligence.position.x + 1u
-            | S -> directionIntelligence.position.y <- directionIntelligence.position.y + 1u
-            | W -> directionIntelligence.position.x <- directionIntelligence.position.x - 1u
+            if x.CheckNeighbor directionIntelligence.direction <> Our then
+                match directionIntelligence.direction with
+                | N -> directionIntelligence.direction <- E
+                | E -> directionIntelligence.direction <- S
+                | S -> directionIntelligence.direction <- W
+                | W -> directionIntelligence.direction <- N
+            else 
+                match directionIntelligence.direction with
+                | N -> directionIntelligence.direction <- W
+                       directionIntelligence.position.y <- directionIntelligence.position.y - 1u
+                | E -> directionIntelligence.direction <- N
+                       directionIntelligence.position.x <- directionIntelligence.position.x + 1u
+                | S -> directionIntelligence.direction <- E
+                       directionIntelligence.position.y <- directionIntelligence.position.y + 1u
+                | W -> directionIntelligence.direction <- S
+                       directionIntelligence.position.x <- directionIntelligence.position.x - 1u
         status
-        
+    
+    member x.GetFrontInfo : FrontLine =        
+        match warArea.[int(x.Position.x),int(x.Position.y)] with
+        | 'R' -> { FrontLine = front; 
+                   PerimeterR = perimeter + front; 
+                   PerimeterF = uint32(warArea.GetLength(0)) * 2u + uint32(warArea.GetLength(1)) * 2u  - perimeter + front }
+        | 'F' -> { FrontLine = front; 
+                   PerimeterF = perimeter + front; 
+                   PerimeterR = uint32(warArea.GetLength(0)) * 2u + uint32(warArea.GetLength(1)) * 2u  - perimeter + front }
+
 
 let rec GetFrontLine (area : _[,]) : FrontLine =
-    let result = { FrontLine = 0u; PerimeterR = 0u; PerimeterF = 0u; }
-
-    if (area.GetLength(0) <> 0) then
-        if (area.GetLength(1) <> 0) then
-            let a = 5
-            printf "%A" a
-            //let map = new Dictionary<IntelligenceKey, NeighborStatus>()
-            //let mutable directionIntelligence = IntelligenceKey(currentPosition, Direction.N)
-            //while (not map.ContainsKey(directionIntelligence)) do
-            //    let a = 6
-            //    printf "%A" a
-
-    result
+    let MI = MilitaryIntelligence(Position(0u,0u), area)
+    let mutable countSteps = 0
+    while MI.NextStep <> MissionComplete do
+        countSteps <- countSteps + 1
+    MI.GetFrontInfo
 
 [<EntryPoint>]
 let main argv = 
-    let key1 = new IntelligenceKey(new Position(1u, 2u), Direction.N)
-    let key2 = IntelligenceKey(Position(1u, 2u), Direction.N)
-
-    if (key1 = key2) then
-        printf "Victory!!!\n"
-    else 
-        printf "Fail ((\n"
-
-    let mutable key3 = IntelligenceKey(Position(0u, 2u), Direction.N)
-    key3.position.x <- 1u
-    if (key1 = key3) then
-        printf "Victory!!!\n"
-    else 
-        printf "Fail ((\n"
-
     let area01 = array2D [ ['R';'R'];
                            ['R';'F'] ]
     // Answer Should Be FrontLine = 2; PerimeterR = 8; PerimeterF = 4
