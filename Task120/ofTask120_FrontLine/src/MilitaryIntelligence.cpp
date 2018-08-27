@@ -69,7 +69,7 @@ operation_status military_intelligence::next_step()
 		operation_status_ = mission_complete;
 	else
 	{
-		if (check_neighbor(current_dislocation_.current_direction) == our)
+		if (check_neighbor(current_dislocation_.current_direction) != our)
 			switch (current_dislocation_.current_direction)
 			{
 				case N: current_dislocation_.current_direction = E; break;

@@ -21,5 +21,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+	private:
+		vector<vector<char>> war_area_;
+		military_intelligence *mi_;
 };
