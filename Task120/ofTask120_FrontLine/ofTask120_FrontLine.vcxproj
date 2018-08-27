@@ -183,10 +183,12 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MilitaryIntelligence.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\ofWarArea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MilitaryIntelligence.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\ofWarArea.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

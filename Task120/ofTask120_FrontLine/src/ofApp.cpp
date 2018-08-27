@@ -26,16 +26,18 @@ void ofApp::setup(){
 		} while (!war_area_map.eof());
 	}
 	mi_ = new military_intelligence(position(0, 0), war_area_);
+	war_map_.setup(war_area_.size(), war_area_[0].size());
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	war_map_.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+	ofBackgroundGradient(ofColor::orange, ofColor::blue);
+	war_map_.draw();
 }
 
 //--------------------------------------------------------------
@@ -100,7 +102,7 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+	war_map_.windowResized(w, h);
 }
 
 //--------------------------------------------------------------

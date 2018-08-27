@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "MilitaryIntelligence.h"
+#include "ofWarArea.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,4 +25,5 @@ class ofApp : public ofBaseApp{
 	private:
 		vector<vector<char>> war_area_;
 		military_intelligence *mi_;
+		ofWarArea war_map_;
 };
