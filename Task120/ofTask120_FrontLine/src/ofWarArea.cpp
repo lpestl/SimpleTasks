@@ -6,8 +6,8 @@
 void ofWarArea::setup(std::vector<std::vector<char>> real_area)
 {
 	real_area_ = real_area;
-	logicSizeArea_.x = real_area.size();
-	logicSizeArea_.y = real_area[0].size();
+	logicSizeArea_.y = real_area.size();
+	logicSizeArea_.x = real_area[0].size();
 
 	for (auto i = 0; i < logicSizeArea_.y; ++i)
 	{
@@ -43,7 +43,7 @@ void ofWarArea::draw()
 	{
 		for (auto j = 0; j < logicSizeArea_.x; ++j)
 		{
-			if (area_[i][j].value == 'R')
+  			if (area_[i][j].value == 'R')
 				ofSetColor(0, 255, 0);
 			else if (area_[i][j].value == 'F')
 				ofSetColor(255, 127, 0);
@@ -51,8 +51,8 @@ void ofWarArea::draw()
 				ofSetColor(127, 127, 127);
 			else if (area_[i][j].value == 'X')
 				ofSetColor(255, 255, 255);
-			auto x = j * (betweenInterval_ + cellSize_.x) + betweenInterval_ / 2 + rectArea_.x;
 			auto y = i * (betweenInterval_ + cellSize_.y) + betweenInterval_ / 2 + rectArea_.y;
+			auto x = j * (betweenInterval_ + cellSize_.x) + betweenInterval_ / 2 + rectArea_.x;
 			ofDrawRectangle(x, y, cellSize_.x, cellSize_.y);
 
 			switch (area_[i][j].borders[N]) { 
@@ -125,13 +125,14 @@ void ofWarArea::draw()
 		auto dir = mi_->get_direction();
 		auto x = pos.x * (betweenInterval_ + cellSize_.x) + betweenInterval_ / 2 + rectArea_.x;
 		auto y = pos.y * (betweenInterval_ + cellSize_.y) + betweenInterval_ / 2 + rectArea_.y;
-		ofDrawRectangle(x, y, cellSize_.x, cellSize_.y);
+ 		ofDrawRectangle(x, y, cellSize_.x, cellSize_.y);
 		ofSetColor(255, 255, 255);
+		auto arrowHead = cellSize_.x / 15;
 		switch (dir) { 
-		case N: ofDrawArrow(ofVec3f(x + cellSize_.x / 2, y + cellSize_.y), ofVec3f(x + cellSize_.x / 2, y), cellSize_.x / 15); break;
-		case E: ofDrawArrow(ofVec3f(x, y + cellSize_.y / 2), ofVec3f(x + cellSize_.x, y + cellSize_.y /2), cellSize_.x / 15); break;
-		case S: ofDrawArrow(ofVec3f(x + cellSize_.x / 2, y), ofVec3f(x + cellSize_.x / 2, y + cellSize_.y), cellSize_.x / 15); break;
-		case W: ofDrawArrow(ofVec3f(x + cellSize_.x, y + cellSize_.y / 2), ofVec3f(x, y + cellSize_.y / 2), cellSize_.x / 15); break;
+		case N: ofDrawArrow(ofVec3f(x + cellSize_.x / 2, y + cellSize_.y), ofVec3f(x + cellSize_.x / 2, y), arrowHead); break;
+		case E: ofDrawArrow(ofVec3f(x, y + cellSize_.y / 2), ofVec3f(x + cellSize_.x, y + cellSize_.y /2), arrowHead); break;
+		case S: ofDrawArrow(ofVec3f(x + cellSize_.x / 2, y), ofVec3f(x + cellSize_.x / 2, y + cellSize_.y), arrowHead); break;
+		case W: ofDrawArrow(ofVec3f(x + cellSize_.x, y + cellSize_.y / 2), ofVec3f(x, y + cellSize_.y / 2), arrowHead); break;
 		}
 	}
 }
@@ -160,9 +161,28 @@ void ofWarArea::windowResized(int w, int h)
 
 void ofWarArea::next_step()
 {
-	if (mi_ != nullptr)
+   	if (mi_ != nullptr)
 	{
-		//mi_->next_step();
+		auto pos = mi_->get_position();
+		auto dir = mi_->get_direction();
+		area_[pos.y][pos.x].value = 'X';
+		auto step_result = mi_->next_step();
+		if (step_result.second != mission_complete)
+		{
+ 			area_[pos.y][pos.x].borders[dir] = step_result.first;
+ 		} else
+		{
+			auto report = mi_->get_report();
+			delete mi_;
+			mi_ = nullptr;
+			for (auto i = 0; i < logicSizeArea_.y; ++i)
+			{
+				for (auto j = 0; j < logicSizeArea_.x; ++j)
+				{
+					area_[i][j].value = real_area_[i][j];
+				}
+			}
+		}
 	}
 }
 

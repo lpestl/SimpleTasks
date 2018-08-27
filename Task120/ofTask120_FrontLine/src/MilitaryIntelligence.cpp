@@ -24,8 +24,8 @@ neighbor_status military_intelligence::check_neighbor(direction dir)
 	neighbor_status status = not_explored;
 
 	if (((dir == N) && (current_dislocation_.current_position.y == 0)) ||
-		((dir == S) && (current_dislocation_.current_position.y == war_area_[0].size() - 1)) ||
-		((dir == E) && (current_dislocation_.current_position.x == war_area_.size() - 1)) ||
+		((dir == S) && (current_dislocation_.current_position.y == war_area_.size() - 1)) ||
+		((dir == E) && (current_dislocation_.current_position.x == war_area_[0].size() - 1)) ||
 		((dir == W) && (current_dislocation_.current_position.x == 0)))
 	{
 		status = perimeter;
@@ -42,7 +42,7 @@ neighbor_status military_intelligence::check_neighbor(direction dir)
 			case W: checking_position.x--; break;
 		}
 
-		if (war_area_[checking_position.x][checking_position.y] == war_area_[current_dislocation_.current_position.x][current_dislocation_.current_position.y])
+		if (war_area_[checking_position.y][checking_position.x] == war_area_[current_dislocation_.current_position.y][current_dislocation_.current_position.x])
 			status = our;
 		else
 		{
@@ -54,8 +54,9 @@ neighbor_status military_intelligence::check_neighbor(direction dir)
 	return status;
 }
 
-operation_status military_intelligence::next_step()
+std::pair<neighbor_status, operation_status> military_intelligence::next_step()
 {
+	neighbor_status result_checking = not_explored;
 	bool finded = false;
 	for (auto prev_pos : explored_)
 		if ((prev_pos.current_position.x == current_dislocation_.current_position.x) && 
@@ -69,7 +70,8 @@ operation_status military_intelligence::next_step()
 		operation_status_ = mission_complete;
 	else
 	{
-		if (check_neighbor(current_dislocation_.current_direction) != our)
+		result_checking = check_neighbor(current_dislocation_.current_direction);
+		if (result_checking != our)
 			switch (current_dislocation_.current_direction)
 			{
 				case N: current_dislocation_.current_direction = E; break;
@@ -98,14 +100,14 @@ operation_status military_intelligence::next_step()
 					break;
 			}
 	}
-	return operation_status_;
+	return std::pair<neighbor_status, operation_status>(result_checking, operation_status_);
 }
 
 intelligence_report military_intelligence::get_report()
 {
 	intelligence_report report{};
 	report.front_line = front_;
-	if (war_area_[current_dislocation_.current_position.x][current_dislocation_.current_position.y] == 'R')
+	if (war_area_[current_dislocation_.current_position.y][current_dislocation_.current_position.x] == 'R')
 	{
 		report.perimeter_R = perimeter_ + front_;
 		report.perimeter_F = war_area_.size() * 2 + war_area_[0].size() * 2 - perimeter_ + front_;

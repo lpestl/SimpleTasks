@@ -44,7 +44,7 @@ public:
 	position get_position();
 	direction get_direction();
 	neighbor_status check_neighbor(direction dir);
-	operation_status next_step();
+	std::pair<neighbor_status, operation_status> next_step();
 	intelligence_report get_report();
 };
 
