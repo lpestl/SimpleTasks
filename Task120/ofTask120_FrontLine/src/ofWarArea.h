@@ -25,5 +25,7 @@ private:
 	std::vector<std::vector<cell>> area_;
 	float betweenInterval_;
 	military_intelligence * mi_;
+	operation_status op_status_;
+	intelligence_report report_;
 };
 

@@ -37,6 +37,8 @@ void ofWarArea::update()
 
 void ofWarArea::draw()
 {
+	ofPushMatrix();
+	ofScale(0.75, 0.75);
 	ofSetColor(127, 127, 127);
 	ofDrawRectangle(rectArea_);
 	for (auto i = 0; i < logicSizeArea_.y; ++i)
@@ -127,13 +129,85 @@ void ofWarArea::draw()
 		auto y = pos.y * (betweenInterval_ + cellSize_.y) + betweenInterval_ / 2 + rectArea_.y;
  		ofDrawRectangle(x, y, cellSize_.x, cellSize_.y);
 		ofSetColor(255, 255, 255);
-		auto arrowHead = cellSize_.x / 15;
+		auto offset = cellSize_.x / 6;
 		switch (dir) { 
-		case N: ofDrawArrow(ofVec3f(x + cellSize_.x / 2, y + cellSize_.y), ofVec3f(x + cellSize_.x / 2, y), arrowHead); break;
-		case E: ofDrawArrow(ofVec3f(x, y + cellSize_.y / 2), ofVec3f(x + cellSize_.x, y + cellSize_.y /2), arrowHead); break;
-		case S: ofDrawArrow(ofVec3f(x + cellSize_.x / 2, y), ofVec3f(x + cellSize_.x / 2, y + cellSize_.y), arrowHead); break;
-		case W: ofDrawArrow(ofVec3f(x + cellSize_.x, y + cellSize_.y / 2), ofVec3f(x, y + cellSize_.y / 2), arrowHead); break;
+		case N: 
+			ofDrawTriangle(x + offset, y + cellSize_.y / 2, x + cellSize_.x / 2, y + offset, x + cellSize_.x - offset, y + cellSize_.y / 2);
+			break;
+		case E:
+			ofDrawTriangle(x + cellSize_.x / 2, y + offset, x + cellSize_.x - offset, y + cellSize_.y / 2, x + cellSize_.x / 2, y + cellSize_.y - offset);
+			break;
+		case S:
+			ofDrawTriangle(x + offset, y + cellSize_.y / 2, x + cellSize_.x / 2, y + cellSize_.y - offset, x + cellSize_.x - offset, y + cellSize_.y / 2);
+			break;
+		case W:
+			ofDrawTriangle(x + cellSize_.x / 2, y + offset, x + offset, y + cellSize_.y / 2, x + cellSize_.x / 2, y + cellSize_.y - offset);
+			break;
 		}
+	}
+	ofScale(1, 1);
+	ofPopMatrix();
+	
+	ofSetColor(255, 255, 255, 127);
+	ofDrawRectangle(ofGetWindowWidth() - 300, 0, 300, ofGetWindowHeight());
+
+	auto currX = ofGetWindowWidth() - 250;
+	auto currY = 100;
+	ofSetColor(0, 0, 0);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Perimeter", currX + betweenInterval_ * 3, currY + betweenInterval_);
+	
+	currY += 50;
+	ofSetColor(255, 255, 255);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Explored", currX + betweenInterval_ * 3, currY + betweenInterval_);
+
+	currY += 50;
+	ofSetColor(127, 127, 127);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Not Explored", currX + betweenInterval_ * 3, currY + betweenInterval_);
+
+	currY += 50;
+	ofSetColor(255, 0, 0);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Front Line", currX + betweenInterval_ * 3, currY + betweenInterval_);
+
+	currY += 50;
+	ofSetColor(0, 255, 0);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Russian", currX + betweenInterval_ * 3, currY + betweenInterval_);
+
+	currY += 50;
+	ofSetColor(255, 127, 0);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Fascists", currX + betweenInterval_ * 3, currY + betweenInterval_);
+
+	currY += 50;
+	ofSetColor(0, 127, 0);
+	ofDrawRectangle(currX, currY, betweenInterval_ * 3, betweenInterval_);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(" - Intelligence group", currX + betweenInterval_ * 3, currY + betweenInterval_);
+
+	currY += 100;
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString("Press 'SPACE' to next step", currX, currY + betweenInterval_);
+
+	if (op_status_ == mission_complete)
+	{
+		currY += 100;
+		ofDrawBitmapStringHighlight("Mission Complete!", currX, currY, ofColor::red);
+		currY += 25;
+		ofDrawBitmapStringHighlight("Front Line = " + ofToString(report_.front_line), currX, currY);
+		currY += 25;
+		ofDrawBitmapStringHighlight("Perimeter R = " + ofToString(report_.perimeter_R), currX, currY);
+		currY += 25;
+		ofDrawBitmapStringHighlight("Perimeter F = " + ofToString(report_.perimeter_F), currX, currY);
 	}
 }
 
@@ -172,7 +246,8 @@ void ofWarArea::next_step()
  			area_[pos.y][pos.x].borders[dir] = step_result.first;
  		} else
 		{
-			auto report = mi_->get_report();
+			op_status_ = mission_complete;
+			report_ = mi_->get_report();
 			delete mi_;
 			mi_ = nullptr;
 			for (auto i = 0; i < logicSizeArea_.y; ++i)
