@@ -28,7 +28,23 @@ void ofWarArea::setup(std::vector<std::vector<char>> real_area)
 	auto winWidth = ofGetWindowWidth();
 	auto winHeight = ofGetWindowHeight();
 	windowResized(winWidth, winHeight);
-	mi_ = new military_intelligence(position(0, 0), real_area);
+	position pos(0, 0);
+	auto ch = real_area[pos.y][pos.x];
+	for (auto i = 0; i < logicSizeArea_.y; ++i)
+	{
+		for (auto j = 0; j < logicSizeArea_.x; ++j)
+		{
+			if (real_area[i][j] != ch)
+			{
+				pos.x = j;
+				pos.y = i;
+				break;
+			}
+		}
+		if ((pos.x != 0) || (pos.y != 0))
+			break;
+	}
+	mi_ = new military_intelligence(pos, real_area);
 }
 
 void ofWarArea::update()
@@ -248,6 +264,7 @@ void ofWarArea::next_step()
 		{
 			op_status_ = mission_complete;
 			report_ = mi_->get_report();
+
 			delete mi_;
 			mi_ = nullptr;
 			for (auto i = 0; i < logicSizeArea_.y; ++i)
