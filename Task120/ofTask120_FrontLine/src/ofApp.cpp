@@ -2,7 +2,6 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	mi_ = nullptr;
 	char current_char;
 	ifstream war_area_map("data\\war_area.ini");
 	if (war_area_map.is_open())
@@ -25,8 +24,7 @@ void ofApp::setup(){
 			current_char = EOF;
 		} while (!war_area_map.eof());
 	}
-	mi_ = new military_intelligence(position(0, 0), war_area_);
-	war_map_.setup(war_area_.size(), war_area_[0].size());
+	war_map_.setup(war_area_);
 }
 
 //--------------------------------------------------------------
@@ -45,21 +43,7 @@ void ofApp::keyPressed(int key){
 	switch (key)
 	{
 	case ' ':
-		if (mi_ != nullptr)
-		{
-			if (mi_->next_step() == mission_complete)
-			{
-				auto report = mi_->get_report();
-				cout << "FrontLine = " << report.front_line << "; PerimeterR = " << report.perimeter_R << "; PerimeterF = " << report.perimeter_F << endl;
-				delete mi_;
-				mi_ = nullptr;
-			} else
-			{
-				auto pos = mi_->get_position();
-				auto dir = mi_->get_direction();
-				cout << "Checked pos(" << pos.x << "; " << pos.y << ") on direction " << dir << endl;
-			}
-		}
+		war_map_.next_step();
 		break;
 	default:;
 	}

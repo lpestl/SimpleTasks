@@ -12,15 +12,18 @@ struct cell
 class ofWarArea
 {
 public:
-	void setup(unsigned int width, unsigned int height);
+	void setup(std::vector<std::vector<char>> real_area);
 	void update();
 	void draw();
 	void windowResized(int w, int h);
+	void next_step();
 private:
+	std::vector<std::vector<char>> real_area_;
 	ofPoint logicSizeArea_;
 	ofRectangle rectArea_;
 	ofPoint cellSize_;
 	std::vector<std::vector<cell>> area_;
 	float betweenInterval_;
+	military_intelligence * mi_;
 };
 

@@ -24,6 +24,5 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 	private:
 		vector<vector<char>> war_area_;
-		military_intelligence *mi_;
 		ofWarArea war_map_;
 };
