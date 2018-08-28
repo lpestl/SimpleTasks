@@ -12,12 +12,13 @@ namespace Task121byteCs
         {
             var chars = str.ToCharArray();
             for(var i = 0; i < chars.Length; i++)
-            {
-                if (((chars[i] >= 0x61) && (chars[i] <= 0x7A)) || ((chars[i] >= 0x430) && (chars[i] <= 0x44F)))
-                    chars[i] = (char) (chars[i] - 0x20);
-                else if (((chars[i] >= 0x41) && (chars[i] <= 0x5A)) || ((chars[i] >= 0x410) && (chars[i] <= 0x42F)))
-                    chars[i] = (char) (chars[i] + 0x20);
-            }
+                chars[i] =
+                    (((chars[i] >= 0x61) && (chars[i] <= 0x7A)) || ((chars[i] >= 0x430) && (chars[i] <= 0x44F)))
+                        ?
+                        (char) (chars[i] - 0x20)
+                        : (((chars[i] >= 0x41) && (chars[i] <= 0x5A)) || ((chars[i] >= 0x410) && (chars[i] <= 0x42F)))
+                            ? (char) (chars[i] + 0x20)
+                            : chars[i];
             return new string(chars);
         }
     }
