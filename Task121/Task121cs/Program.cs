@@ -28,7 +28,7 @@ namespace Task121cs
 
         static void Main(string[] args)
         {
-            string message1 = "cAPS LOCK. я ЛЮБЛЮ ТЕБЯ!";
+            string message1 = "cAPS LOCK. я ТЕБЯ ненавижу!";
             Console.WriteLine(ReverteCapsLock(message1));
         }
     }
