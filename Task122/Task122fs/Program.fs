@@ -106,7 +106,7 @@ let main argv =
         let rnd = new Random()
         let height = rnd.Next(1, 15)
         let width = rnd.Next(1, 15)
-        let mutable matrix = Array.create height (Array.create width 0)
+        let mutable matrix = Array.map(fun x -> Array.create width 0) [|0..height-1|]
         for i in 0..height - 1 do
             for j in 0..width - 1 do                
                 matrix.[i].[j] <- rnd.Next(-1000, 1000)

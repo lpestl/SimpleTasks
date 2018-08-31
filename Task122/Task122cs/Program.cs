@@ -22,13 +22,13 @@ namespace Task122cs
         public static MaxSumSubMatrixData GetSubMatrixWithMaxSum(int[,] matrix)
         {
             // Инициализации переменной для хранения ответа (если матрица пустая, то индексы будут отрицательные)
-            MaxSumSubMatrixData result = new MaxSumSubMatrixData { IStart = -1, JStart = -1, IEnd = -1, JEnd = -1 };
+            MaxSumSubMatrixData result = new MaxSumSubMatrixData { Sum = matrix[0,0], IStart = 0, JStart = 0, IEnd = 0, JEnd = 0 };
             // Возьмем за начало подматрицы каждый элемент из главной матрицы
             for (var i = 0; i < matrix.GetLength(0); i++)
                 for (var j = 0; j < matrix.GetLength(1); j++)
                 {
                     // Инициализируем переменную для поиска максимальной суммы всех подматриц с началом в i,j
-                    MaxSumSubMatrixData sumSubMatrix = new MaxSumSubMatrixData { IStart = i, JStart = j };
+                    MaxSumSubMatrixData sumSubMatrix = new MaxSumSubMatrixData { Sum = matrix[i,j], IStart = i, JStart = j };
                     // Чтобы перебрать все подматрицы, мы должны перебрать все варианты правого нижнего угла матрицы от начала (i,j) до конта исходной матрицы
                     for (var i_end = i; i_end < matrix.GetLength(0); i_end++)
                         for (var j_end = j; j_end < matrix.GetLength(1); j_end++)
