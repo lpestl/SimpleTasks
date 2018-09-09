@@ -30,47 +30,42 @@ namespace Task124cs
             Console.WriteLine($"SecondShares = \"{string.Join(",", answer03.Item2)}\", SecondTotalValue = {answer03.Item2.Sum()}");
         }
 
-        public static void QuickSort(int[] array, int leftIndex, int rightIndex)
+        public static Tuple<int, int[]> SharesBrutForce(int halfSum, List<int> unusedShares)
         {
-            int i = leftIndex, j = rightIndex, x = array[(leftIndex + rightIndex)/2];
-            do
+            var unusedSum = unusedShares.Sum();
+            var tupleAnswer = Tuple.Create(unusedSum, unusedShares.ToArray());
+            var minDiff = Math.Abs(halfSum - unusedSum);
+            if (unusedSum < halfSum)
+                return tupleAnswer;
+            for (var i = 0; i < unusedShares.Count; i++)
             {
-                while (array[i] > x)
-                    i++;
-                while (x > array[j])
-                    j--;
-                if (i <= j)
+                var newUnusedList = new List<int>();
+                newUnusedList.AddRange(unusedShares);
+                newUnusedList.RemoveAt(i);
+                var checkNewAnswer = SharesBrutForce(halfSum, newUnusedList);
+                if (minDiff > Math.Abs(halfSum - checkNewAnswer.Item1))
                 {
-                    var temp = array[i];
-                    array[i++] = array[j];
-                    array[j--] = temp;
+                    minDiff = Math.Abs(halfSum - checkNewAnswer.Item1);
+                    tupleAnswer = checkNewAnswer;
                 }
-            } while (i <= j);
-            if (leftIndex < j)
-                QuickSort(array, leftIndex, j);
-            if (i < rightIndex)
-                QuickSort(array, i, rightIndex);
-        }
+            }
 
-        public static void QuickSort(int[] array)
-        {
-            QuickSort(array, 0, array.Length - 1);
-            Console.WriteLine($"{string.Join(", ", array)}");
+            return tupleAnswer;
         }
 
         private static Tuple<int[],int[]> CalculateDiversification(int[] shares)
         {
-            var firstShares = new List<int>();
+            var inputList = new List<int>();
             var secondShares = new List<int>();
-            QuickSort(shares);
-            foreach (var share in shares)
-            {
-                if (firstShares.Sum() < secondShares.Sum()) 
-                    firstShares.Add(share);
-                else
-                    secondShares.Add(share);
-            }
-            return Tuple.Create(firstShares.ToArray(), secondShares.ToArray());
+            var half = shares.Sum() / 2;
+
+            inputList.AddRange(shares);
+            var optimalPart = SharesBrutForce(half, inputList);
+            secondShares.AddRange(shares);
+            foreach (var i in optimalPart.Item2)
+                secondShares.Remove(i);
+
+            return Tuple.Create(optimalPart.Item2, secondShares.ToArray());
         }
     }
 }
