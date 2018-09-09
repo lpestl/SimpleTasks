@@ -6,7 +6,12 @@ let CalculateDiversification (array : int[]) =
         for i in 1..arr.Length - 1 do
             s <- s + arr.[i]
         s
+    
+    let part1 = { Part = [||]; Sum = 0 }
     let half = (sum array) / 2
+
+    let 
+
     ({ Part = [|0|]; Sum = 0} , { Part = [|0|]; Sum = 0} )
 
 [<EntryPoint>]
