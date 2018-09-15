@@ -10,14 +10,35 @@ namespace Task126cs
     {
         private static uint NumberOfPosibleOption(char[] sourceAlphabet, int lengthOption, string exceptSubstring)
         {
-            var answer = Math.Pow(sourceAlphabet.Length, lengthOption);
-            var indexes = new uint[lengthOption];
+            uint count = 0;
+            var indexes = new long[lengthOption];
+            var lexema = new char[lengthOption];
             uint i = 0;
-            while (i < answer) 
+            var limit = Math.Pow(sourceAlphabet.Length, lengthOption);
+            while (i < limit)
             {
+                var index = 0;
+                long division = i / sourceAlphabet.Length;
+                long remainder = i % sourceAlphabet.Length;
+                indexes[index++] = remainder;
+                while (division >= sourceAlphabet.Length)
+                {
+                    remainder = division % sourceAlphabet.Length;
+                    division = division / sourceAlphabet.Length;
+                    indexes[index++] = remainder;
+                }
+                indexes[index] = division;
 
+                for (uint j = 0; j < lengthOption; j++)
+                    lexema[j] = sourceAlphabet[indexes[j]];
+
+                string str = new string(lexema);
+                if (!str.Contains(exceptSubstring))
+                    count++;
+
+                i++;
             }
-            return 0;
+            return count;
         }
 
         static void Main(string[] args)
