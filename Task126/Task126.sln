@@ -10,22 +10,40 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task126cs", "Task126cs\Task126cs.csproj", "{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Debug|x64.ActiveCfg = Debug|x64
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Debug|x64.Build.0 = Debug|x64
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Debug|x86.ActiveCfg = Debug|Win32
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Debug|x86.Build.0 = Debug|Win32
+		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Release|Any CPU.ActiveCfg = Release|Win32
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Release|x64.ActiveCfg = Release|x64
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Release|x64.Build.0 = Release|x64
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Release|x86.ActiveCfg = Release|Win32
 		{CE39847D-0F85-4B7E-837D-1CE5E39C1949}.Release|x86.Build.0 = Release|Win32
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Debug|x64.Build.0 = Debug|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Debug|x86.Build.0 = Debug|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Release|x64.Build.0 = Release|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Release|x86.ActiveCfg = Release|Any CPU
+		{7A1E6DBA-C20B-4F0B-BDC4-6BDB897B1DB1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
