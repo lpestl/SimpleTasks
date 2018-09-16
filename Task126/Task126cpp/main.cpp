@@ -37,7 +37,7 @@ unsigned int number_of_possible_options(std::vector<char> source_alphabet, unsig
 	auto p_miss = static_cast<double>(source_alphabet.size() - 1) / source_alphabet.size();
 	double p = 0;
 	for (unsigned int i = 1; i <= lenght_option - except_substring.size(); ++i)
-		p += pow(p_char, except_substring.size()) * pow(p_miss, lenght_option - except_substring.size() + i);
+		p += pow(p_char, except_substring.size()) * pow(p_miss, lenght_option - except_substring.size() + i) * pow(p_char, lenght_option - except_substring.size());
 	
 
 	//auto p_start_substring = 1 - calculacte_p_Bernoulli(lenght_option - except_substring.size() + 1, 0, p_char);

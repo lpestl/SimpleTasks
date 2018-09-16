@@ -1,26 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task126cs
 {
     class Program
     {
+        // Самый надежный и самый "тяжелый способ" - перебор всех сочетаний алфавита и исключние тех, в которых есть подстрока
         private static uint NumberOfPosibleOption(char[] sourceAlphabet, int lengthOption, string exceptSubstring)
         {
-            uint count = 0;
+            // Инициализируем счетчики
+            uint count = 0, i = 0;
+            // Инициализируем индексы для каждого символа (индекс - порядковый номер из алфавита)
             var indexes = new long[lengthOption];
+            // массив символов для слова необходимой длинны 
             var lexema = new char[lengthOption];
-            uint i = 0;
+            // Количество всех сочетаний символов
             var limit = Math.Pow(sourceAlphabet.Length, lengthOption);
-            //Console.WriteLine(limit);
+            // Будем идти пока не переберем все
             while (i < limit)
             {
+                // Индек номера символа
                 var index = 0;
+                // Переводим число i в число системы счисления длинны алфавита
                 long division = i / sourceAlphabet.Length;
                 long remainder = i % sourceAlphabet.Length;
+                // И записываем значения по разрядам
                 indexes[index++] = remainder;
                 while (division >= sourceAlphabet.Length)
                 {
@@ -29,16 +32,18 @@ namespace Task126cs
                     indexes[index++] = remainder;
                 }
                 indexes[index] = division;
-
+                // Теперь можем составить слово из текущего сочетания
                 for (uint j = 0; j < lengthOption; j++)
                     lexema[j] = sourceAlphabet[indexes[j]];
-
+                // Набор символов в строку
                 string str = new string(lexema);
+                // И проверим, содержит ли она подстроку
                 if (!str.Contains(exceptSubstring))
+                    // Если нет, то увеличиваем на один счетчик
                     count++;
-
                 i++;
             }
+            // Возвращаем количество
             return count;
         }
 
