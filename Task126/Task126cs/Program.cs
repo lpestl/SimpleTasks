@@ -15,6 +15,7 @@ namespace Task126cs
             var lexema = new char[lengthOption];
             uint i = 0;
             var limit = Math.Pow(sourceAlphabet.Length, lengthOption);
+            //Console.WriteLine(limit);
             while (i < limit)
             {
                 var index = 0;
@@ -51,13 +52,77 @@ namespace Task126cs
             Console.WriteLine("Alphabet: {'1', '2', '3' }; N = 3; subdtring = \"12\"");
             Console.WriteLine(answer01);
 
-            // Test simple
+            // Test simple 2-2-1
             var alphabet02 = new[] { '0', '1' };
             var n02 = 2;
             var substring02 = "1";
             var answer02 = NumberOfPosibleOption(alphabet02, n02, substring02);
             Console.WriteLine("Alphabet: {'0', '1' }; N = 2; subdtring = \"1\"");
             Console.WriteLine(answer02);
+
+            // Test simple 2-2-2
+            var alphabet03 = new[] { '0', '1' };
+            var n03 = 2;
+            var substring03 = "11";
+            var answer03 = NumberOfPosibleOption(alphabet03, n03, substring03);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 2; subdtring = \"11\"");
+            Console.WriteLine(answer03);
+            
+            // Test simple 2-3-1
+            var alphabet04 = new[] { '0', '1' };
+            var n04 = 3;
+            var substring04 = "1";
+            var answer04 = NumberOfPosibleOption(alphabet04, n04, substring04);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 3; subdtring = \"1\"");
+            Console.WriteLine(answer04);
+
+            // Test simple 2-3-2
+            var alphabet05 = new[] { '0', '1' };
+            var n05 = 3;
+            var substring05 = "11";
+            var answer05 = NumberOfPosibleOption(alphabet05, n05, substring05);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 3; subdtring = \"11\"");
+            Console.WriteLine(answer05);
+
+            // Test simple 2-3-3
+            var alphabet06 = new[] { '0', '1' };
+            var n06 = 3;
+            var substring06 = "111";
+            var answer06 = NumberOfPosibleOption(alphabet06, n06, substring06);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 3; subdtring = \"111\"");
+            Console.WriteLine(answer06);
+            
+            // Test simple 2-4-1
+            var alphabet07 = new[] { '0', '1' };
+            var n07 = 4;
+            var substring07 = "1";
+            var answer07 = NumberOfPosibleOption(alphabet07, n07, substring07);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 4; subdtring = \"1\"");
+            Console.WriteLine(answer07);
+            
+            // Test simple 2-4-2
+            var alphabet08 = new[] { '0', '1' };
+            var n08 = 4;
+            var substring08 = "11";
+            var answer08 = NumberOfPosibleOption(alphabet08, n08, substring08);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 4; subdtring = \"11\"");
+            Console.WriteLine(answer08);
+            
+            // Test simple 2-4-3
+            var alphabet09 = new[] { '0', '1' };
+            var n09 = 4;
+            var substring09 = "111";
+            var answer09 = NumberOfPosibleOption(alphabet09, n09, substring09);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 4; subdtring = \"111\"");
+            Console.WriteLine(answer09);
+            
+            // Test simple 2-4-4
+            var alphabet10 = new[] { '0', '1' };
+            var n10 = 4;
+            var substring10 = "1111";
+            var answer10 = NumberOfPosibleOption(alphabet10, n10, substring10);
+            Console.WriteLine("Alphabet: {'0', '1' }; N = 4; subdtring = \"1111\"");
+            Console.WriteLine(answer10);
         }
 
     }

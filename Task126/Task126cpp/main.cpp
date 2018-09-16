@@ -24,7 +24,7 @@ T fac(T x) {
 }
 // Note lpestl: end
 
- // Pn(k) = n!/(k! * (n - k)!) * P^k * (1 - P)^(n-k)
+// Pn(k) = n!/(k! * (n - k)!) * P^k * (1 - P)^(n-k)
 double calculacte_p_Bernoulli(unsigned int n, unsigned int k, double probability)
 {
 	return static_cast<double>(fac(n)) / (fac(k) * fac(n - k)) * pow(probability, k) * pow(1 - probability, n - k);
@@ -33,12 +33,19 @@ double calculacte_p_Bernoulli(unsigned int n, unsigned int k, double probability
 unsigned int number_of_possible_options(std::vector<char> source_alphabet, unsigned int lenght_option, std::string except_substring) 
 {
 	auto all_option = static_cast<unsigned int>(pow(source_alphabet.size(), lenght_option));
-	auto p = static_cast<double>(1) / source_alphabet.size();
-	auto p_start_substring = 1 - calculacte_p_Bernoulli(lenght_option - (except_substring.size() - 1), 0, p);
-	auto p_other_char_substring = pow(p, except_substring.size() - 1);
-	auto p_common = p_start_substring * p_other_char_substring;
+	auto p_char = static_cast<double>(1) / source_alphabet.size();
+	auto p_miss = static_cast<double>(source_alphabet.size() - 1) / source_alphabet.size();
+	double p = 0;
+	for (unsigned int i = 1; i <= lenght_option - except_substring.size(); ++i)
+		p += pow(p_char, except_substring.size()) * pow(p_miss, lenght_option - except_substring.size() + i);
+	
 
-	return all_option - p_common * all_option;
+	//auto p_start_substring = 1 - calculacte_p_Bernoulli(lenght_option - except_substring.size() + 1, 0, p_char);
+	//auto p_other_char_substring = pow(p_char, except_substring.size() - 1);
+	//auto p_common = p_start_substring * p_other_char_substring;
+	//auto p_common = calculacte_p_Bernoulli(lenght_option, except_substring.size(), p_char);
+
+	return all_option - p;
 }
 
 int main() 
@@ -59,5 +66,5 @@ int main()
 	// Answer should be 21
 	std::cout << "For: '0', '1'; N=2; without_sub_str=\"1\"" << std::endl << "Answer = " << answer02 << std::endl;
 
-	return 0;
+ 	return 0;
 }
