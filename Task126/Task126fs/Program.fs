@@ -11,8 +11,7 @@ let pBernoulli (n: int, k: int, p:double) =
 let NumberOfPossibleOptions(alphabet: char[], length: uint32, substr: string) =
     let all_option = double alphabet.Length ** double length
     let p_char = double 1 / double alphabet.Length
-    let p_sub = p_char ** double substr.Length 
-    let mutable p = p_sub * double (int length - substr.Length + 1)
+    let p = pBernoulli(alphabet.Length, int length - substr.Length + 1, p_char)
     
     (1.0 - p) * all_option
 
@@ -31,6 +30,9 @@ let main argv =
     let n02 = 2u
     let substring02 = "1"
     let answer02 = NumberOfPossibleOptions(alphabet02, n02, substring02)
-    printf "For: %A; N=%A; without_sub_str=%A\nAnswer = %A" alphabet02 n02 substring02 answer02
+    printf "For: %A; N=%A; without_sub_str=%A\nAnswer = %A\n" alphabet02 n02 substring02 answer02
+
+    let a = pBernoulli(2, 0, double 1 / double 2);
+    printf "%A \n" a
 
     0 // return an integer exit code
