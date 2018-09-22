@@ -1,10 +1,10 @@
 #include <iostream>
 
-unsigned long long split_summand_on_max_multipl(unsigned n)
-{
-	unsigned long long answer = 0;
+int derivatives_of_the_residue[3] = { 3, 4, 3 * 2 };
 
-	return answer;
+unsigned long long split_summand_on_max_multipl(int n)
+{
+	return static_cast<unsigned long long>(pow(3, n / 3 - 1) * derivatives_of_the_residue[n % 3]);
 }
 
 int main()
