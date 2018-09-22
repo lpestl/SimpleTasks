@@ -40,7 +40,7 @@ int main()
 	std::cout << split_summand_on_max_multipl(19) << std::endl;		// Should be 972
 	std::cout << split_summand_on_max_multipl(20) << std::endl;		// Should be 1458
 	// ...
-	std::cout << split_summand_on_max_multipl(100) << std::endl;	// Should be 
+	std::cout << split_summand_on_max_multipl(100) << std::endl;	// Should be 7412080755407364
 
 	return 0;
 }
