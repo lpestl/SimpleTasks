@@ -10,8 +10,25 @@ unsigned long long split_summand_on_max_multipl(unsigned n)
 int main()
 {
 	// Test from task
-	unsigned n = 5;
-	std::cout << split_summand_on_max_multipl(n) << std::endl;
+	std::cout << split_summand_on_max_multipl(4) << std::endl;		// Should be 4
+	std::cout << split_summand_on_max_multipl(5) << std::endl;		// Should be 6
+	std::cout << split_summand_on_max_multipl(6) << std::endl;		// Should be 9
+	std::cout << split_summand_on_max_multipl(7) << std::endl;		// Should be 12
+	std::cout << split_summand_on_max_multipl(8) << std::endl;		// Should be 18
+	std::cout << split_summand_on_max_multipl(9) << std::endl;		// Should be 27
+	std::cout << split_summand_on_max_multipl(10) << std::endl;		// Should be 36
+	std::cout << split_summand_on_max_multipl(11) << std::endl;		// Should be 54
+	std::cout << split_summand_on_max_multipl(12) << std::endl;		// Should be 81
+	std::cout << split_summand_on_max_multipl(13) << std::endl;		// Should be 108
+	std::cout << split_summand_on_max_multipl(14) << std::endl;		// Should be 162
+	std::cout << split_summand_on_max_multipl(15) << std::endl;		// Should be 243
+	std::cout << split_summand_on_max_multipl(16) << std::endl;		// Should be 324
+	std::cout << split_summand_on_max_multipl(17) << std::endl;		// Should be 486
+	std::cout << split_summand_on_max_multipl(18) << std::endl;		// Should be 729
+	std::cout << split_summand_on_max_multipl(19) << std::endl;		// Should be 972
+	std::cout << split_summand_on_max_multipl(20) << std::endl;		// Should be 1458
+	// ...
+	std::cout << split_summand_on_max_multipl(100) << std::endl;
 
 	return 0;
 }
