@@ -81,9 +81,9 @@ namespace Task130cs
             //GetAllPartitions(14);
             //GetAllPartitions(15);
             // ...
-            //GetAllPartitions(30);
+            GetAllPartitions(30);
             // ...            
-            GetAllPartitions(50);
+            //GetAllPartitions(50);
             //// ...            
             //GetAllPartitions(100);
             sw.Stop();
