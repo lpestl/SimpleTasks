@@ -6,7 +6,7 @@ unsigned int calc_pac_man_path(int width, int height, int row, int column)
 	// —начала умножаем номер строки на ширину матрицы и от полученного значени€ достаточно отн€ть
 	// количество элементов до номера столбца, в случае если строка четна€ (значит в этой строке pac-man двигаетс€ слева направо),
 	// или отн€ть ширину матрицы за вычетом номера столбца в случае если строка нечетна€ (двигаетс€ справа налево)
-	return row * width - (row % 2 == 0 ? column - 1/*единичку отнимаем, чтобы включительно было*/ : width - column);
+	return static_cast<unsigned int>(row) * width - (row % 2 == 0 ? column - 1/*единичку отнимаем, чтобы включительно было*/ : width - column);
 }
 
 // Tests
@@ -19,7 +19,7 @@ int main()
 	 */
 	std::cout << "N x M = " << 3 << " x " << 3 << ";" << std::endl <<
 		"ROW x COLUMN = " << 1 << " x " << 1 << std::endl <<
-		"Answer = " << calc_pac_man_path(3, 9, 9, 1) << std::endl << std::endl;
+		"Answer = " << calc_pac_man_path(3, 3, 1 , 1) << std::endl << std::endl;
 
 	/*
 	 *		. X 0
