@@ -20,7 +20,7 @@ namespace Task133cs
                 // Если мы достигли правой границы, то направление меняется на "вниз" (или "влево", если предыдущее было "вниз"), иначе
                 // Если мы достигли левой границы, то направление меняем на "вниз" (или "вправо", если предыдущее было "вниз").
                 // Ну а коротко, потому что поигрался с инкрементами/декрементами и сокращением условий if
-                j += j == width ? --direction : j == 1 ? ++direction : direction;
+                j += j == width && j != 1 ? --direction : j == 1 && j != width ? ++direction : direction;
                 // координату строки меняем только тогда, когда направление = "вниз"
                 i += Convert.ToInt32(direction == 0);
                 // у увеличеваем шаг
@@ -78,6 +78,7 @@ namespace Task133cs
             Console.WriteLine($"N x M = {N} x {M};");
             Console.WriteLine($"ROW x COLUMN = {row} x {column};");
             Console.WriteLine($"Answer = {CalcPacManPath(N, M, row, column)}\n");
+
         }
     }
 }
