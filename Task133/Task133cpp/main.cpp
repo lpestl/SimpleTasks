@@ -1,5 +1,6 @@
-#include <iostream>
+/*			01. Метод "Просто посчитать"			*/	
 
+#include <iostream>
 // Функция вычисления (тут параметр height даже лишний, если не делать проверку на ввод корректных данных)
 unsigned int calc_pac_man_path(int width, int height, int row, int column)
 {
