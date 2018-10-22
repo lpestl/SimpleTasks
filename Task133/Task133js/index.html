@@ -6,21 +6,20 @@
     <link href="css/default.css" rel="stylesheet" />
 </head>
 <body>
+    <pre>
     <div class="input">
-        <pre>
-            N: &#9;&#9;<input type="text" id="width" /> <br />
-            M: &#9;&#9;<input type="text" id="height" /> <br />
-            Row: &#9;<input type="text" id="row" /> <br />
-            Column: &#9;<input type="text" id="column" /> <br />
-        </pre>
+        N: &#9;&#9;<input type="text" id="width" value="3"> <br />
+        M: &#9;&#9;<input type="text" id="height" value="3"> <br />
+        Row: &#9;&#9;<input type="text" id="row" value="2"> <br />
+        Column: &#9;<input type="text" id="column" value="1"> <br />
+                &#9;<div id="startbutton"></div>
     </div>
-    <canvas id="canvas" style="background:#eeeeee"></canvas>
+        <canvas id="canvas" style="background:#eeeeee"></canvas>
     <div class="stat">
-        <pre>
-            Current step: &#9;<span id="step">0</span> <br />
-            Answer: &#9;&#9;<span id="answer">0</span>
-        </pre>
+        Current step: &#9;<span id="step">0</span> <br />
+        Answer: &#9;<span id="answer">X</span>
     </div>
+    </pre>
     <script src="js/main.js"></script>
 </body>
 </html>
