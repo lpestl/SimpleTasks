@@ -4,24 +4,42 @@ namespace Task135cs
 {
     class Program
     {
-        static void CalcCurrentLayer(int remainderBlocks, int lastLayerLenght, ref ulong count)
+        /// <summary>
+        /// Еще один рекурсивный метод перебора всех возможных построений пирамиды
+        /// </summary>
+        /// <param name="remainderBlocks">количество оставшихся неиспользованных блоков</param>
+        /// <param name="maxLayerLenght">максимальная длинна текущего слоя блоков</param>
+        /// <param name="count">счетчик пирамид</param>
+        static void CalcCurrentLayer(int remainderBlocks, int maxLayerLenght, ref ulong count)
         {
-            if ((remainderBlocks < 0) || (lastLayerLenght < 0d)) return;
+            // Если остаток или максимальная длинна слоя меньше нуля, то вернемся в место вызова функции
+            if ((remainderBlocks < 0) || (maxLayerLenght < 0)) return;
+            // Если остаток равен нулю
             if (remainderBlocks == 0)
+                // значит пирамиду удалось построить
                 count++;
+            // иначе
             else
             {
-                if (remainderBlocks - lastLayerLenght >= 0)
-                    CalcCurrentLayer(remainderBlocks - lastLayerLenght, lastLayerLenght - 1, ref count);
-                if (lastLayerLenght - 1 > 0)
-                    CalcCurrentLayer(remainderBlocks, lastLayerLenght - 1, ref count);
+                // Если попробовать положить слой и блоки еще остануться (или ровно закончатся)
+                if (remainderBlocks - maxLayerLenght >= 0)
+                    // То рекурсивно вызовем функцию, для того, чтобы положить следующий слой, который на еденицу меньше текущего
+                    CalcCurrentLayer(remainderBlocks - maxLayerLenght, maxLayerLenght - 1, ref count);
+                // Если длинну уменьшить на единицу
+                if (maxLayerLenght - 1 > 0)
+                    // То можно построить пирамиду с меньшим текущим слоем
+                    CalcCurrentLayer(remainderBlocks, maxLayerLenght - 1, ref count);
             }
         }
 
+        // Функция для запуска рекурсии
         static ulong CountPosiblePiramids(int count_block)
         {
+            // инициализируем счетчик
             ulong count = 0;
+            // запускаем рекурсию
             CalcCurrentLayer(count_block, count_block, ref count);
+            // вернем результат
             return count;
         }
 
