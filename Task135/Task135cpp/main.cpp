@@ -6,7 +6,7 @@
 // count по ссылке - счетчик для подсчета возможных вариантов
 // used_blocks - количество уже используемых блоков
 // last_layer_lenght - ширина количества блоков в последнеем слое пирамиды
-void calc_top_layers(int remainder_blocks, unsigned int & count, int used_blocks, int last_layer_lenght)
+void calc_top_layers(int remainder_blocks, unsigned long & count, int used_blocks, int last_layer_lenght)
 {
 	// на текущий слой попробуем положить блоков начиная от максимально возможного количества и заканчивая всего одним
 	for (auto i = last_layer_lenght - 1; i > 0; --i)
@@ -21,10 +21,10 @@ void calc_top_layers(int remainder_blocks, unsigned int & count, int used_blocks
 }
 
 // функция подсчета количества возможных пирамид из определенного количества блоков
-unsigned int count_possible_pyramids(int count_blocks)
+unsigned long count_possible_pyramids(int count_blocks)
 {
 	// объявим счетчик для подсчета возможных реализаций пирамид
-	unsigned int count = 0;
+	unsigned long count = 0;
 	// и вызовем рекурсивный метод
 	calc_top_layers(count_blocks, count, 0, count_blocks + 1);
 	// результат подсчета вернем
