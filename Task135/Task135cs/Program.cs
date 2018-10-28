@@ -4,15 +4,24 @@ namespace Task135cs
 {
     class Program
     {
-        static void CalcCurrentLayer()
+        static void CalcCurrentLayer(int remainderBlocks, int lastLayerLenght, ref ulong count)
         {
-
+            if ((remainderBlocks < 0) || (lastLayerLenght < 0d)) return;
+            if (remainderBlocks == 0)
+                count++;
+            else
+            {
+                if (remainderBlocks - lastLayerLenght >= 0)
+                    CalcCurrentLayer(remainderBlocks - lastLayerLenght, lastLayerLenght - 1, ref count);
+                if (lastLayerLenght - 1 > 0)
+                    CalcCurrentLayer(remainderBlocks, lastLayerLenght - 1, ref count);
+            }
         }
 
         static ulong CountPosiblePiramids(int count_block)
         {
             ulong count = 0;
-
+            CalcCurrentLayer(count_block, count_block, ref count);
             return count;
         }
 
@@ -38,7 +47,6 @@ namespace Task135cs
             Console.WriteLine($"N = {100}; Answer = {CountPosiblePiramids(100)}");
             // Test fro chat
             Console.WriteLine($"N = {42}; Answer = {CountPosiblePiramids(42)}");
-
         }
     }
 }
