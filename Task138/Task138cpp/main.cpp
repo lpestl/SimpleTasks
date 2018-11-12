@@ -83,7 +83,7 @@ std::vector<int> sub_array_with_max_abs_sum3(const std::vector<int>& input_array
 				sub_arrays[i].push_back(input_array[j]);
 			}
 		// Теперь вычисляем максимальную сумму по модулю и индекс
-		if (sums[i] > max)
+		if (std::abs(sums[i]) > std::abs(max))
 		{
 			max = sums[i];
 			i_max = i;
