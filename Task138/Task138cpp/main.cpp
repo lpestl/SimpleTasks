@@ -37,7 +37,7 @@ std::vector<int> sub_array_with_max_abs_sum1(const std::vector<int>& input_array
 std::vector<int> sub_array_with_max_abs_sum2(const std::vector<int>& input_array)
 {
 	// Получаем сумму для всего массива
-	auto sum = std::accumulate(input_array.begin(), input_array.end(), 0);
+	long long sum = std::accumulate(input_array.begin(), input_array.end(), 0);
 	// Инициализируем вектор для возврата 
 	std::vector<int> output_array;
 	// выбираем элементы, которые дадут по модулю максимальную сумму
@@ -56,6 +56,43 @@ std::vector<int> sub_array_with_max_abs_sum2(const std::vector<int>& input_array
 	// вернем подмассив
 	return output_array;
 }
+
+/*						Метод 03. Неоптимальный					   */
+std::vector<int> sub_array_with_max_abs_sum3(const std::vector<int>& input_array)
+{
+	// Заведем вектор для сумм
+	std::vector<long long> sums;
+	// И в векторе для каждой суммы будем собирать свой подмассив
+	std::vector<std::vector<int>> sub_arrays;
+	// Назначим max и i_max для сумм - как первый элемент
+	int max = input_array[0]; int i_max = 0;
+	// Пройдем по всем элементам исходного массива
+	for (size_t i = 0; i < input_array.size(); ++i)
+	{
+		// Назначим текущий элемент - началом подмассива и от него будем считать сумму
+		sums.push_back(input_array[i]);
+		sub_arrays.push_back(std::vector<int> { input_array[i] });
+		// Проверяем элементы исходного массива начиная со следующего и до конца
+		for (size_t j = i + 1; j < input_array.size(); ++j)
+			// Если сумма по модулю со следующим элементом увеличиться
+			if (std::abs(sums[i]) < std::abs(sums[i] + input_array[j]))
+			{
+				// То увеличим сумму
+				sums[i] += input_array[j];
+				// И добавим элемент в подмассив
+				sub_arrays[i].push_back(input_array[j]);
+			}
+		// Теперь вычисляем максимальную сумму по модулю и индекс
+		if (sums[i] > max)
+		{
+			max = sums[i];
+			i_max = i;
+		}
+	}
+	// И возвращаем подмассив с максимальной суммой по модулю
+	return sub_arrays[i_max];
+}
+
 
 // Вспомогательная функция для вывода вектора на экран
 void print_vector(const std::vector<int>& vector)
@@ -87,5 +124,7 @@ int main()
 	std::cout << "Input = "; print_vector(input_vector);
 	std::cout << "Answer = "; print_vector(sub_array_with_max_abs_sum2(input_vector)); std::cout << std::endl;
 
+	std::cout << "Input = "; print_vector(input_vector);
+	std::cout << "Answer = "; print_vector(sub_array_with_max_abs_sum3(input_vector)); std::cout << std::endl;
 	return 0;
 }
