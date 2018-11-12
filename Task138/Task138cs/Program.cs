@@ -7,7 +7,7 @@ namespace Task138cs
     class Program
     {
         /*						Метод 01. Простые суммы						 */
-        private static int[] SubArrayWithMaxAbsSum3(int[] inputArray)
+        private static int[] SubArrayWithMaxAbsSum1(int[] inputArray)
         {
             // Почему бы не завести два массива для положительных и отрицательных?
             List<int> positive = new List<int>();
@@ -33,6 +33,15 @@ namespace Task138cs
                 }
             // Вернем подмассив в зависимости от того, у которого сумма по модулю больше
             return sumPositive > sumNegative ? positive.ToArray() : negative.ToArray();
+        }
+
+        private static int[] SubArrayWithMaxAbsSum11(int[] inputArray)
+        {
+            // Почему бы не завести два массива для положительных и отрицательных?
+            var positive = inputArray.Where(x => x > 0).ToArray();
+            var negative = inputArray.Where(x => x < 0).ToArray();
+            // Вернем подмассив в зависимости от того, у которого сумма по модулю больше
+            return positive.Sum() > Math.Abs(negative.Sum()) ? positive : negative;
         }
 
         /*						Метод 02. Сумма - индикатор					   */
@@ -72,7 +81,7 @@ namespace Task138cs
         }
 
         /*						Метод 03. Неоптимальный					   */
-        private static int[] SubArrayWithMaxAbsSum1(int[] inputArray)
+        private static int[] SubArrayWithMaxAbsSum3(int[] inputArray)
         {
             // Заведем список для сумм
             List<long> sums = new List<long>();
@@ -122,6 +131,12 @@ namespace Task138cs
             PrintArray(inputArray);
             Console.Write("Answer = ");
             PrintArray(SubArrayWithMaxAbsSum1(inputArray));
+            Console.WriteLine("");
+
+            Console.Write("Input = ");
+            PrintArray(inputArray);
+            Console.Write("Answer = ");
+            PrintArray(SubArrayWithMaxAbsSum11(inputArray));
             Console.WriteLine("");
 
             Console.Write("Input = ");
