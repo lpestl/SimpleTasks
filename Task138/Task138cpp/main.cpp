@@ -1,10 +1,11 @@
-/*						Метод 01. Простые суммы					 */	
 #include <iostream>
 #include <vector>
 #include <complex>
+#include <numeric>
 
+/*						Метод 01. Простые суммы						 */
 // Возвращает подмассив с максимальной суммой по модулю
-std::vector<int> sub_array_with_max_abs_sum(const std::vector<int>& input_array)
+std::vector<int> sub_array_with_max_abs_sum1(const std::vector<int>& input_array)
 {
 	// Почему бы не завести два массива для положительных и отрицательных?
 	std::vector<int> positive;
@@ -32,6 +33,30 @@ std::vector<int> sub_array_with_max_abs_sum(const std::vector<int>& input_array)
 	return sum_positive > sum_negative ? positive : negative;
 }
 
+/*						Метод 02. Сумма - индикатор					   */			
+std::vector<int> sub_array_with_max_abs_sum2(const std::vector<int>& input_array)
+{
+	// Получаем сумму для всего массива
+	auto sum = std::accumulate(input_array.begin(), input_array.end(), 0);
+	// Инициализируем вектор для возврата 
+	std::vector<int> output_array;
+	// выбираем элементы, которые дадут по модулю максимальную сумму
+	for (auto& value : input_array)
+	{
+		// Если общая сумма - положительна
+		if (sum > 0)
+			// то и конечный подмассив надо строить из положительных элементов
+			if (value > 0)
+				output_array.push_back(value);
+		// Аналочино - если сумма отрицательна
+		if (sum < 0)
+			if (value < 0)
+				output_array.push_back(value);
+	}
+	// вернем подмассив
+	return output_array;
+}
+
 // Вспомогательная функция для вывода вектора на экран
 void print_vector(const std::vector<int>& vector)
 {
@@ -55,8 +80,12 @@ int main()
 {
 	// Test from task
 	std::vector<int> input_vector = { -1, 2, -1, 3, -4 };
+
 	std::cout << "Input = "; print_vector(input_vector);
-	std::cout << "Answer = "; print_vector(sub_array_with_max_abs_sum(input_vector)); std::cout << std::endl;
+	std::cout << "Answer = "; print_vector(sub_array_with_max_abs_sum1(input_vector)); std::cout << std::endl;
+
+	std::cout << "Input = "; print_vector(input_vector);
+	std::cout << "Answer = "; print_vector(sub_array_with_max_abs_sum2(input_vector)); std::cout << std::endl;
 
 	return 0;
 }
